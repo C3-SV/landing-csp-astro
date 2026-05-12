@@ -4,11 +4,37 @@ import { ourFileRouter } from "../../server/uploadthing";
 
 export const prerender = false;
 
-const handlers = createRouteHandler({
-  router: ourFileRouter,
-  config: {
-    token: import.meta.env.UPLOADTHING_TOKEN,
-  },
-});
+const uploadThingToken = process.env.UPLOADTHING_TOKEN ?? import.meta.env.UPLOADTHING_TOKEN;
 
-export { handlers as GET, handlers as POST };
+const handlers = uploadThingToken
+  ? createRouteHandler({
+      router: ourFileRouter,
+      config: {
+        token: uploadThingToken,
+      },
+    })
+  : null;
+
+const missingTokenResponse = new Response(
+  JSON.stringify({
+    error: "UPLOADTHING_TOKEN is not configured on the server.",
+  }),
+  {
+    status: 503,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+    },
+  },
+);
+
+const getHandler = async (request: Request) => {
+  if (!handlers) return missingTokenResponse;
+  return handlers.GET(request);
+};
+
+const postHandler = async (request: Request) => {
+  if (!handlers) return missingTokenResponse;
+  return handlers.POST(request);
+};
+
+export { getHandler as GET, postHandler as POST };
