@@ -1,0 +1,11 @@
+---
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "../server/uploadthing";
+
+const routerConfig = extractRouterConfig(ourFileRouter);
+(globalThis as any).__UPLOADTHING ??= routerConfig;
+---
+
+<script define:vars={{ routerConfig }} is:inline>
+  globalThis.__UPLOADTHING ??= routerConfig;
+</script>
