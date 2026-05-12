@@ -1,6 +1,5 @@
 ---
 import { EVENT_NAME } from "../lib/constants";
-import UploadThingSSR from "../components/UploadThingSSR.astro";
 import "../styles/global.css";
 
 type Props = {
@@ -22,7 +21,6 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <UploadThingSSR />
   <body class="min-h-full flex flex-col bg-csp-background text-csp-black">
     <slot />
   </body>

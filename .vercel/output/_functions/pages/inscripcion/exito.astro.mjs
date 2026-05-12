@@ -1,6 +1,6 @@
 import { e as createComponent, m as maybeRenderHead, g as addAttribute, s as spreadAttributes, k as renderSlot, r as renderTemplate, h as createAstro, l as renderComponent } from '../../chunks/astro/server_uYHly2D0.mjs';
 import 'piccolore';
-import { $ as $$BaseLayout, a as $$PublicHeader, b as $$PublicFooter, E as EVENT_NAME } from '../../chunks/PublicHeader_CVREHOJh.mjs';
+import { $ as $$PublicHeader, a as $$PublicFooter, E as EVENT_NAME, b as $$BaseLayout } from '../../chunks/PublicHeader_Cy2KZvzW.mjs';
 import 'clsx';
 export { renderers } from '../../renderers.mjs';
 

@@ -1,6 +1,6 @@
 import { e as createComponent, l as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_uYHly2D0.mjs';
 import 'piccolore';
-import { $ as $$BaseLayout, E as EVENT_NAME, a as $$PublicHeader, b as $$PublicFooter } from '../chunks/PublicHeader_CVREHOJh.mjs';
+import { b as $$BaseLayout, E as EVENT_NAME, $ as $$PublicHeader, a as $$PublicFooter } from '../chunks/PublicHeader_Cy2KZvzW.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {

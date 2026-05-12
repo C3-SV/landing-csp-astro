@@ -1,12 +1,15 @@
-import { e as createComponent, l as renderComponent, r as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_uYHly2D0.mjs';
+import { e as createComponent, r as renderTemplate, n as defineScriptVars, l as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_uYHly2D0.mjs';
 import 'piccolore';
-import { E as EVENT_NAME, D as DISCOVERY_SOURCE_OPTIONS, S as SCHOOL_RESPONSIBLE_ROLES, $ as $$BaseLayout, a as $$PublicHeader, b as $$PublicFooter } from '../../chunks/PublicHeader_CVREHOJh.mjs';
+import { E as EVENT_NAME, D as DISCOVERY_SOURCE_OPTIONS, S as SCHOOL_RESPONSIBLE_ROLES, b as $$BaseLayout, $ as $$PublicHeader, a as $$PublicFooter } from '../../chunks/PublicHeader_Cy2KZvzW.mjs';
 import { jsxs, Fragment, jsx } from 'react/jsx-runtime';
 import { useState, useMemo, useEffect } from 'react';
 import { genUploader } from 'uploadthing/client';
 import { getFirestore, doc, collection, serverTimestamp, setDoc } from 'firebase/firestore';
 import { getApps, getApp, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import 'clsx';
+import { extractRouterConfig } from 'uploadthing/server';
+import { o as ourFileRouter } from '../../chunks/uploadthing_CkiOpQ_y.mjs';
 export { renderers } from '../../renderers.mjs';
 
 function cn(...classes) {
@@ -1743,8 +1746,18 @@ function RegistrationRoute() {
   return /* @__PURE__ */ jsx(RegistrationForm, { category });
 }
 
+var __freeze = Object.freeze;
+var __defProp = Object.defineProperty;
+var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(cooked.slice()) }));
+var _a;
+const $$UploadThingSSR = createComponent(($$result, $$props, $$slots) => {
+  const routerConfig = extractRouterConfig(ourFileRouter);
+  globalThis.__UPLOADTHING ??= routerConfig;
+  return renderTemplate(_a || (_a = __template(["<script>(function(){", "\n  globalThis.__UPLOADTHING ??= routerConfig;\n})();<\/script>"])), defineScriptVars({ routerConfig }));
+}, "C:/Users/gemc1/Documents/GitHub/landing-csp-astro/src/components/UploadThingSSR.astro", void 0);
+
 const $$Registro = createComponent(($$result, $$props, $$slots) => {
-  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": `Formulario de inscripci\xF3n | ${EVENT_NAME}`, "description": "Inicio del formulario de registro de equipos." }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<div class="flex min-h-screen flex-col"> ${renderComponent($$result2, "PublicHeader", $$PublicHeader, {})} <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-10"> <h1 class="mb-2 font-display text-3xl font-semibold text-csp-primary">Formulario de inscripción</h1> <p class="mb-6 text-sm text-csp-black/70">Completa los 6 pasos para registrar oficialmente al equipo.</p> ${renderComponent($$result2, "RegistrationRoute", RegistrationRoute, { "client:load": true, "client:component-hydration": "load", "client:component-path": "C:/Users/gemc1/Documents/GitHub/landing-csp-astro/src/components/RegistrationRoute", "client:component-export": "RegistrationRoute" })} </main> ${renderComponent($$result2, "PublicFooter", $$PublicFooter, {})} </div> ` })}`;
+  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, { "title": `Formulario de inscripci\xF3n | ${EVENT_NAME}`, "description": "Inicio del formulario de registro de equipos." }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "UploadThingSSR", $$UploadThingSSR, {})} ${maybeRenderHead()}<div class="flex min-h-screen flex-col"> ${renderComponent($$result2, "PublicHeader", $$PublicHeader, {})} <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-10"> <h1 class="mb-2 font-display text-3xl font-semibold text-csp-primary">Formulario de inscripción</h1> <p class="mb-6 text-sm text-csp-black/70">Completa los 6 pasos para registrar oficialmente al equipo.</p> ${renderComponent($$result2, "RegistrationRoute", RegistrationRoute, { "client:load": true, "client:component-hydration": "load", "client:component-path": "C:/Users/gemc1/Documents/GitHub/landing-csp-astro/src/components/RegistrationRoute", "client:component-export": "RegistrationRoute" })} </main> ${renderComponent($$result2, "PublicFooter", $$PublicFooter, {})} </div> ` })}`;
 }, "C:/Users/gemc1/Documents/GitHub/landing-csp-astro/src/pages/inscripcion/registro.astro", void 0);
 
 const $$file = "C:/Users/gemc1/Documents/GitHub/landing-csp-astro/src/pages/inscripcion/registro.astro";
