@@ -10,6 +10,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  publicDir: "../public",
+  publicDir: "./public",
   srcDir: "./src",
 });

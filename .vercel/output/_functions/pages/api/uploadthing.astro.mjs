@@ -21,11 +21,11 @@ const missingTokenResponse = new Response(
     }
   }
 );
-const getHandler = async (request) => {
+const getHandler = async ({ request }) => {
   if (!handlers) return missingTokenResponse;
   return handlers.GET(request);
 };
-const postHandler = async (request) => {
+const postHandler = async ({ request }) => {
   if (!handlers) return missingTokenResponse;
   return handlers.POST(request);
 };
