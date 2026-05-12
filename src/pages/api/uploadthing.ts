@@ -27,12 +27,14 @@ const missingTokenResponse = new Response(
   },
 );
 
-const getHandler = async (request: Request) => {
+import type { APIRoute } from "astro";
+
+const getHandler: APIRoute = async ({ request }) => {
   if (!handlers) return missingTokenResponse;
   return handlers.GET(request);
 };
 
-const postHandler = async (request: Request) => {
+const postHandler: APIRoute = async ({ request }) => {
   if (!handlers) return missingTokenResponse;
   return handlers.POST(request);
 };
