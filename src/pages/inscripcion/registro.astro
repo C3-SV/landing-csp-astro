@@ -5,6 +5,8 @@ import PublicFooter from "../../components/PublicFooter.astro";
 import PublicHeader from "../../components/PublicHeader.astro";
 import { RegistrationRoute } from "../../components/RegistrationRoute";
 import UploadThingSSR from "../../components/UploadThingSSR.astro";
+
+export const prerender = true;
 ---
 
 <BaseLayout title={`Formulario de inscripción | ${EVENT_NAME}`} description="Inicio del formulario de registro de equipos.">

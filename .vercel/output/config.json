@@ -24,18 +24,6 @@
 			"dest": "_render"
 		},
 		{
-			"src": "^/inscripcion/exito/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/inscripcion/registro/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/inscripcion/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^/phases/?$",
 			"dest": "_render"
 		},
@@ -45,10 +33,6 @@
 		},
 		{
 			"src": "^/rules/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/$",
 			"dest": "_render"
 		}
 	]

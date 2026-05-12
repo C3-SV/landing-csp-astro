@@ -5,6 +5,8 @@ import PublicFooter from "../../components/PublicFooter.astro";
 import PublicHeader from "../../components/PublicHeader.astro";
 import Card from "../../components/Card.astro";
 
+export const prerender = true;
+
 const id = Astro.url.searchParams.get("id")?.trim() ?? "";
 ---
 
