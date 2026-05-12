@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { EVENT_NAME } from "../../lib/constants";
+import PublicFooter from "../../components/PublicFooter.astro";
+import PublicHeader from "../../components/PublicHeader.astro";
+import { RegistrationRoute } from "../../components/RegistrationRoute";
+---
+
+<BaseLayout title={`Formulario de inscripción | ${EVENT_NAME}`} description="Inicio del formulario de registro de equipos.">
+  <div class="flex min-h-screen flex-col">
+    <PublicHeader />
+    <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-10">
+      <h1 class="mb-2 font-display text-3xl font-semibold text-csp-primary">Formulario de inscripción</h1>
+      <p class="mb-6 text-sm text-csp-black/70">Completa los 6 pasos para registrar oficialmente al equipo.</p>
+
+      <RegistrationRoute client:load />
+    </main>
+    <PublicFooter />
+  </div>
+</BaseLayout>

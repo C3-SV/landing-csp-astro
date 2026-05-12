@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.9",
     "@astrojs/react": "^4.3.2",
+    "@astrojs/vercel": "^9.0.5",
     "@uploadthing/react": "^7.3.3",
     "astro": "^5.9.0"
   },
