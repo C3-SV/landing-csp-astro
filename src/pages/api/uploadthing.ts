@@ -1,19 +1,30 @@
 import { createRouteHandler } from "uploadthing/server";
+import type { APIRoute } from "astro";
 
 import { ourFileRouter } from "../../server/uploadthing";
 
 export const prerender = false;
 
-const uploadThingToken = process.env.UPLOADTHING_TOKEN ?? import.meta.env.UPLOADTHING_TOKEN;
+const readUploadThingToken = () => {
+  const runtimeToken =
+    typeof process !== "undefined" && process.env
+      ? process.env.UPLOADTHING_TOKEN
+      : undefined;
 
-const handlers = uploadThingToken
-  ? createRouteHandler({
-      router: ourFileRouter,
-      config: {
-        token: uploadThingToken,
-      },
-    })
-  : null;
+  return runtimeToken ?? import.meta.env.UPLOADTHING_TOKEN;
+};
+
+const createHandlers = () => {
+  const uploadThingToken = readUploadThingToken();
+  if (!uploadThingToken) return null;
+
+  return createRouteHandler({
+    router: ourFileRouter,
+    config: {
+      token: uploadThingToken,
+    },
+  });
+};
 
 const missingTokenResponse = new Response(
   JSON.stringify({
@@ -27,12 +38,29 @@ const missingTokenResponse = new Response(
   },
 );
 
-import type { APIRoute } from "astro";
-
-const handler: APIRoute = async ({ request }) => {
+const handleUploadThingRequest = async (request: Request) => {
+  const handlers = createHandlers();
   if (!handlers) return missingTokenResponse;
-  return handlers(request);
+
+  try {
+    return await handlers(request);
+  } catch (error) {
+    console.error("[UploadThing] /api/uploadthing failed:", error);
+    return new Response(
+      JSON.stringify({
+        error: "UploadThing route failed to execute.",
+        message: error instanceof Error ? error.message : "Unknown server error",
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      },
+    );
+  }
 };
 
-export { handler as GET, handler as POST };
-
+export const GET: APIRoute = async ({ request }) => handleUploadThingRequest(request);
+export const POST: APIRoute = async ({ request }) => handleUploadThingRequest(request);
+
