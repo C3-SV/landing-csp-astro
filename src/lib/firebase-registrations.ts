@@ -9,7 +9,7 @@ export async function createRegistration(formData: RegistrationFormData): Promis
   if (!db || !isFirebaseConfigured) {
     const invalidKeys = firebaseConfigDiagnostics.invalidEnvKeys.join(", ");
     throw new Error(
-      `Firebase no esta configurado correctamente. Revisa las variables PUBLIC_FIREBASE_* (${invalidKeys}).`,
+      `Firebase no esta configurado correctamente. Revisa las variables PUBLIC_FIREBASE_* o NEXT_PUBLIC_FIREBASE_* (${invalidKeys}).`,
     );
   }
 
