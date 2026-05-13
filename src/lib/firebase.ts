@@ -5,12 +5,20 @@ import type { Auth } from "firebase/auth";
 import type { FirebaseApp } from "firebase/app";
 import type { Firestore } from "firebase/firestore";
 
+function readEnvWithFallback(publicKey: string, nextPublicKey: string): string {
+  const rawValue = import.meta.env[publicKey] ?? import.meta.env[nextPublicKey] ?? "";
+  return String(rawValue).trim().replace(/,$/, "");
+}
+
 const firebaseConfig = {
-  apiKey: import.meta.env.PUBLIC_FIREBASE_API_KEY,
-  authDomain: import.meta.env.PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.PUBLIC_FIREBASE_PROJECT_ID,
-  messagingSenderId: import.meta.env.PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.PUBLIC_FIREBASE_APP_ID,
+  apiKey: readEnvWithFallback("PUBLIC_FIREBASE_API_KEY", "NEXT_PUBLIC_FIREBASE_API_KEY"),
+  authDomain: readEnvWithFallback("PUBLIC_FIREBASE_AUTH_DOMAIN", "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN"),
+  projectId: readEnvWithFallback("PUBLIC_FIREBASE_PROJECT_ID", "NEXT_PUBLIC_FIREBASE_PROJECT_ID"),
+  messagingSenderId: readEnvWithFallback(
+    "PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
+    "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
+  ),
+  appId: readEnvWithFallback("PUBLIC_FIREBASE_APP_ID", "NEXT_PUBLIC_FIREBASE_APP_ID"),
 };
 
 const placeholderValues = new Set([
@@ -46,7 +54,7 @@ if (!isFirebaseConfigured) {
     details.push(`placeholders: ${placeholderEnvKeys.join(", ")}`);
   }
   console.warn(
-    `[Firebase] Configuracion incompleta (${details.join(" | ")}). Revisa las variables PUBLIC_FIREBASE_* en .env.`,
+    `[Firebase] Configuracion incompleta (${details.join(" | ")}). Revisa las variables PUBLIC_FIREBASE_* (o NEXT_PUBLIC_FIREBASE_*) en .env.`,
   );
 }
 
