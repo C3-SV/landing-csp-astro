@@ -5,9 +5,16 @@ import PublicFooter from "../../components/PublicFooter.astro";
 import PublicHeader from "../../components/PublicHeader.astro";
 import Card from "../../components/Card.astro";
 
-export const prerender = true;
+export const prerender = false;
 
 const id = Astro.url.searchParams.get("id")?.trim() ?? "";
+const emailStatus = Astro.url.searchParams.get("emailStatus")?.trim() ?? "";
+const isEmailSent = emailStatus === "sent";
+const isEmailWarning = emailStatus === "warning";
+
+const confirmationMessage = isEmailSent
+  ? "¡Inscripción recibida! Enviamos un correo de confirmación al capitán del equipo."
+  : "Tu inscripción fue recibida correctamente. Si no recibís el correo de confirmación en unos minutos, revisá spam o contactanos.";
 ---
 
 <BaseLayout title={`Inscripción enviada | ${EVENT_NAME}`} description="Confirmación de inscripción enviada correctamente.">
@@ -17,8 +24,13 @@ const id = Astro.url.searchParams.get("id")?.trim() ?? "";
       <Card class="w-full text-center">
         <h1 class="font-display text-3xl font-semibold text-csp-primary">Inscripción enviada</h1>
         <p class="mt-3 text-csp-black/70">
-          Tu equipo fue registrado correctamente. Pronto el comité organizador contactará al responsable para confirmar el proceso.
+          {confirmationMessage}
         </p>
+        {isEmailWarning ? (
+          <p class="mt-2 text-sm text-csp-black/60">
+            Tu registro ya fue guardado exitosamente y está en revisión.
+          </p>
+        ) : null}
         {id ? (
           <p class="mt-2 text-sm text-csp-black/70">
             ID de inscripción: <strong>{id}</strong>
