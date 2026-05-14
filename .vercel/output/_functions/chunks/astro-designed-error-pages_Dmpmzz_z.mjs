@@ -12,7 +12,7 @@ const ACTION_QUERY_PARAMS$1 = {
   actionName: "_action"};
 const ACTION_RPC_ROUTE_PATTERN = "/_actions/[...path]";
 
-const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "PUBLIC_FIREBASE_API_KEY": "AIzaSyBwFFR0999h_Svq9P5Z5zm0D_-VXa4d-Bs", "PUBLIC_FIREBASE_APP_ID": "1:1062879122375:web:db74158808cf45fcaeffe2", "PUBLIC_FIREBASE_AUTH_DOMAIN": "landing-csp.firebaseapp.com", "PUBLIC_FIREBASE_MESSAGING_SENDER_ID": "1062879122375", "PUBLIC_FIREBASE_PROJECT_ID": "landing-csp", "PUBLIC_FIREBASE_STORAGE_BUCKET": "landing-csp.firebasestorage.app", "SITE": undefined, "SSR": true};
+const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": undefined, "SSR": true};
 const ACTION_QUERY_PARAMS = ACTION_QUERY_PARAMS$1;
 const codeToStatusMap = {
   // Implemented from IANA HTTP Status Code Registry

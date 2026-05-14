@@ -24,15 +24,15 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^/inscripcion/exito/?$",
+			"dest": "_render"
+		},
+		{
 			"src": "^/phases/?$",
 			"dest": "_render"
 		},
 		{
 			"src": "^/register/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^/rules/?$",
 			"dest": "_render"
 		}
 	]

@@ -5,9 +5,9 @@ export { renderers } from '../renderers.mjs';
 
 const $$Phases = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate``;
-}, "C:/Users/gemc1/Documents/GitHub/landing-csp-astro/src/pages/phases.astro", void 0);
+}, "C:/Users/Melisa Rivas/OneDrive/Desktop/C3/landing-csp-astro/src/pages/phases.astro", void 0);
 
-const $$file = "C:/Users/gemc1/Documents/GitHub/landing-csp-astro/src/pages/phases.astro";
+const $$file = "C:/Users/Melisa Rivas/OneDrive/Desktop/C3/landing-csp-astro/src/pages/phases.astro";
 const $$url = "/phases";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

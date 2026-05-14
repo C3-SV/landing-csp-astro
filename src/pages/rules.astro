@@ -1,0 +1,455 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { EVENT_NAME } from "../lib/constants";
+
+export const prerender = true;
+
+const rules = [
+	{
+		eyebrow: "Equipos",
+		title: "Cada equipo debe estar formado por 3 estudiantes de la misma institución.",
+		body:
+			"Para pasar a la fase presencial, se tomarán a los 3 mejores equipos por institución. Esta política está sujeta a cambios, dependiendo del espacio disponible.",
+		visual: "laptop",
+	},
+	{
+		eyebrow: "Plataforma",
+		title: "Una cuenta de OmegaUp por equipo.",
+		body:
+			"Los equipos deberán crear una cuenta en OmegaUp para participar. Solo se permite un usuario por equipo, y todas las soluciones deben enviarse desde esa cuenta oficial.",
+		visual: "phone",
+		reverse: true,
+	},
+	{
+		eyebrow: "Problemas",
+		title: "Los equipos resolverán 6 problemas.",
+		body:
+			"Cada solución cuenta en el tiempo total del equipo. La dificultad y la corrección de las respuestas determinan el avance en la tabla, por lo que conviene priorizar precisión y ritmo.",
+		visual: "stack",
+	},
+	{
+		eyebrow: "Lenguajes y entornos de desarrollo",
+		title: "Usa Python, Java o C++ con acceso limitado a recursos",
+		body:
+			"Podrán programar en Python, Java o C++ utilizando la documentación oficial desde las computadoras del lugar. Se permite el uso de teclado y mouse propios, pero no celulares, tabletas u otros dispositivos electrónicos, ni la comunicación con personas externas o el acceso a sitios web no autorizados. Pueden utilizar papel y lápiz para tomar apuntes.",
+		visual: "phoneStack",
+		reverse: true,
+	},
+	{
+		eyebrow: "Evaluación",
+		title: "Gana quien resuelve más problemas en menos tiempo.",
+		body:
+			"Los equipos serán evaluados por la precisión y cantidad de problemas resueltos correctamente. En caso de empate, se considerará el tiempo en el que se enviaron las soluciones.",
+		visual: "stack",
+	},
+	{
+		eyebrow: "Conducta",
+		title: "Comportamiento ético obligatorio. El uso de IA resulta en descalificación inmediata.",
+		body:
+			"Se exige un comportamiento respetuoso en todo momento; no se permite lenguaje ofensivo ni actitudes despectivas. Está prohibido el plagio, la colaboración externa, el uso de inteligencia artificial y cualquier herramienta o sitio no autorizado. Cualquier infracción resultará en descalificación inmediata y puede implicar expulsión y veto en futuras ediciones.",
+		visual: "phoneStack",
+		reverse: true,
+	},
+	{
+		eyebrow: "Apelaciones",
+		title: "30 minutos para apelar. El jurado técnico tiene la última palabra.",
+		body:
+			"Si un equipo considera que su solución fue evaluada incorrectamente, puede presentar una apelación dentro de los 30 minutos posteriores al cierre. Las apelaciones son revisadas por un jurado técnico, cuya decisión es final e inapelable. En caso de fallos técnicos, el comité podría otorgar tiempo adicional.",
+		visual: "phone",
+	},
+];
+---
+
+<BaseLayout title={`Reglamento | ${EVENT_NAME}`} description="Reglamento oficial de la Copa Salvadoreña de Programación 2026.">
+	<div class="min-h-screen bg-csp-background text-csp-black">
+		<header class="relative overflow-hidden bg-csp-primary text-csp-white">
+			<div class="absolute inset-0 opacity-90" aria-hidden="true">
+				<div class="-left-30 absolute top-65 h-64 w-64 rounded-full bg-white/8 blur-3xl"></div>
+				<div class="absolute left-325 bottom-88 h-48 w-48 rounded-full bg-white/10 blur-2xl"></div>
+			</div>
+
+			<div class="relative mx-auto min-h-112 w-full max-w-6xl px-4 pb-14 pt-10 sm:px-6 lg:px-8 lg:pb-20 lg:pt-14">
+				<h1 class="max-w-5xl text-[2.95rem] font-bold leading-[0.95] tracking-tight text-csp-white sm:text-6xl lg:text-[5.15rem]">
+					Conoce las reglas
+					<span class="mt-2 block font-bold text-csp-accent">antes de competir</span>
+				</h1>
+				<p class="mt-7 max-w-5xl text-base leading-8 text-csp-white/80 sm:text-lg">
+					Todos los participantes deben conocer y respetar estas reglas. El incumplimiento puede resultar en descalificación inmediata del equipo.
+				</p>
+				<div class="pointer-events-none absolute h-56 w-56 rounded-full bg-white/8 blur-3xl sm:h-72 sm:w-72" style="right: 68rem; top: 12rem;"></div>
+				<div class="pointer-events-none left-260 absolute bottom-60 h-56 w-56 rounded-full bg-white/8 blur-3xl sm:right-2 sm:h-80 sm:w-80"></div>
+			</div>
+		</header>
+
+		<main class="mx-auto flex w-full max-w-6xl flex-col gap-24 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+			{rules.map((rule, index) => {
+				const reverse = rule.reverse ?? index % 2 === 1;
+				return (
+					<section class={`rule-row ${reverse ? "rule-row-reverse" : ""}`}>
+						<div class="rule-copy">
+							<p class="rule-eyebrow">{rule.eyebrow}</p>
+							<h2 class="rule-title">{rule.title}</h2>
+							<p class="rule-body">{rule.body}</p>
+						</div>
+
+						<div class="rule-visual" aria-hidden="true">
+							{rule.visual === "laptop" && (
+								<div class="visual-shell visual-laptop">
+									<div class="visual-screen">
+										<div class="visual-play"></div>
+									</div>
+									<div class="visual-floating visual-floating-top"></div>
+								</div>
+							)}
+
+							{rule.visual === "phone" && (
+								<div class="visual-stack visual-stack-1">
+									<div class="visual-phone visual-phone-back"></div>
+									<div class="visual-phone visual-phone-front">
+										<div class="visual-card"></div>
+									</div>
+								</div>
+							)}
+
+							{rule.visual === "stack" && (
+								<div class="visual-stack visual-stack-2">
+									<div class="visual-phone visual-phone-back"></div>
+									<div class="visual-phone visual-phone-middle"></div>
+									<div class="visual-card visual-card-large"></div>
+								</div>
+							)}
+
+							{rule.visual === "phoneStack" && (
+								<div class="visual-stack visual-stack-3">
+									<div class="visual-phone visual-phone-back"></div>
+									<div class="visual-phone visual-phone-front"></div>
+									<div class="visual-card visual-card-large"></div>
+								</div>
+							)}
+						</div>
+					</section>
+				);
+			})}
+		</main>
+	</div>
+
+	<style>
+		.rule-row {
+			display: grid;
+			align-items: center;
+			gap: 2rem;
+		}
+
+		@media (min-width: 1024px) {
+			.rule-row {
+				grid-template-columns: minmax(0, 1fr) minmax(22rem, 28rem);
+				gap: 3.5rem;
+			}
+
+			.rule-row-reverse {
+				grid-template-columns: minmax(22rem, 28rem) minmax(0, 1fr);
+			}
+
+			.rule-row-reverse .rule-copy {
+				order: 2;
+			}
+
+			.rule-row-reverse .rule-visual {
+				order: 1;
+			}
+		}
+
+		.rule-copy {
+			max-width: 40rem;
+		}
+
+		.rule-eyebrow {
+			display: inline-flex;
+			margin-bottom: 0.95rem;
+			padding: 0.5rem 0.85rem;
+			border-radius: 0.5rem;
+			font-size: 0.72rem;
+			font-weight: 700;
+			line-height: 1;
+			letter-spacing: 0.28em;
+			text-transform: uppercase;
+			color: #0DAA9F;
+			background: #0daaa027
+		}
+
+		.rule-title {
+			font-family: var(--font-display), system-ui, sans-serif;
+			font-size: clamp(1.9rem, 2.8vw, 2.85rem);
+			line-height: 1.04;
+			font-weight: 600;
+			color: #4f5ba9;
+		}
+
+		.rule-body {
+			margin-top: 1.05rem;
+			max-width: 34rem;
+			font-size: 0.98rem;
+			line-height: 1.7;
+			color: rgba(0, 0, 0, 0.761);
+		}
+
+		.rule-visual {
+			display: flex;
+			justify-content: center;
+		}
+
+		.visual-shell,
+		.visual-stack {
+			position: relative;
+			width: min(100%, 28rem);
+			min-height: 18rem;
+		}
+
+		.visual-laptop {
+			height: 20rem;
+			filter: drop-shadow(0 22px 38px rgba(1, 16, 62, 0.18));
+		}
+
+		.visual-laptop::before {
+			content: "";
+			position: absolute;
+			inset: 2.2rem 1rem 2.9rem;
+			border-radius: 1.25rem;
+			border: 0.7rem solid rgba(15, 32, 62, 0.95);
+			background: linear-gradient(145deg, #f8fbff, #d7e1ff 52%, #b4c2f3);
+			box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65);
+		}
+
+		.visual-laptop::after {
+			content: "";
+			position: absolute;
+			left: 50%;
+			bottom: 0.25rem;
+			width: 90%;
+			height: 0.5rem;
+			transform: translateX(-50%);
+			border-radius: 999px;
+			background: linear-gradient(90deg, rgba(15, 32, 62, 0.05), rgba(15, 32, 62, 0.18), rgba(15, 32, 62, 0.05));
+		}
+
+		.visual-screen {
+			position: absolute;
+			inset: 3.2rem 2rem 3.7rem;
+			overflow: hidden;
+			border-radius: 1rem;
+			background:
+				radial-gradient(circle at 65% 20%, rgba(70, 184, 168, 0.17), transparent 24%),
+				linear-gradient(140deg, #f8fbff, #dfe8ff 48%, #bcccf7);
+		}
+
+		.visual-screen::before {
+			content: "";
+			position: absolute;
+			inset: 1rem 7rem 1rem 1rem;
+			border-radius: 1rem;
+			background: linear-gradient(135deg, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0.12)), linear-gradient(135deg, #b9c7f9, #eff4ff 42%, #ccd8fb);
+			box-shadow: 0 20px 30px rgba(1, 16, 62, 0.18);
+		}
+
+		.visual-play {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			height: 4.1rem;
+			width: 4.1rem;
+			translate: -50% -50%;
+			border-radius: 999px;
+			border: 2px solid rgba(255, 255, 255, 0.74);
+			background: rgba(255, 255, 255, 0.2);
+			backdrop-filter: blur(6px);
+		}
+
+		.visual-play::after {
+			content: "";
+			position: absolute;
+			left: 1.65rem;
+			top: 1.05rem;
+			width: 0;
+			height: 0;
+			border-top: 0.68rem solid transparent;
+			border-bottom: 0.68rem solid transparent;
+			border-left: 1.1rem solid white;
+		}
+
+		.visual-floating {
+			position: absolute;
+			border-radius: 0.95rem;
+			background:
+				linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.08)),
+				linear-gradient(135deg, #f6f8ff, #d3e0ff 54%, #d9f1ea);
+			box-shadow: 0 22px 34px rgba(20, 30, 70, 0.2);
+			border: 3px solid rgba(109, 82, 158, 0.35);
+		}
+
+		.visual-floating-top {
+			right: 0;
+			top: 0.65rem;
+			width: 8.4rem;
+			height: 6.1rem;
+		}
+
+		.visual-floating-top::after {
+			content: "";
+			position: absolute;
+			inset: auto 0.75rem 0.7rem auto;
+			width: 0.7rem;
+			height: 0.7rem;
+			border-radius: 999px;
+			background: #46b8a8;
+			box-shadow: -1.35rem 0 0 0 #f5c400;
+		}
+
+		.visual-stack-1,
+		.visual-stack-2,
+		.visual-stack-3 {
+			min-height: 21rem;
+		}
+
+		.visual-phone {
+			position: absolute;
+			border-radius: 2rem;
+			border: 4px solid rgba(115, 109, 193, 0.45);
+			background: linear-gradient(180deg, #e8f0ff, #d5e0ff 45%, #eff2ff);
+			box-shadow: 0 18px 34px rgba(1, 16, 62, 0.18);
+		}
+
+		.visual-phone::before {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 0.75rem;
+			height: 0.45rem;
+			width: 2rem;
+			translate: -50% 0;
+			border-radius: 999px;
+			background: rgba(255, 255, 255, 0.7);
+		}
+
+		.visual-phone::after {
+			content: "";
+			position: absolute;
+			left: 50%;
+			bottom: 0.95rem;
+			width: 1rem;
+			height: 1rem;
+			translate: -50% 0;
+			border-radius: 999px;
+			background: #f5c400;
+			box-shadow: -1.8rem 0 0 0 rgba(255, 255, 255, 0.9), 1.8rem 0 0 0 rgba(255, 255, 255, 0.9);
+		}
+
+		.visual-phone-back {
+			left: 0.5rem;
+			top: 2rem;
+			width: 9rem;
+			height: 15.8rem;
+			opacity: 0.7;
+		}
+
+		.visual-phone-middle {
+			left: 7rem;
+			top: 0.5rem;
+			width: 9rem;
+			height: 16.6rem;
+			border-color: rgba(79, 91, 169, 0.6);
+			background: linear-gradient(180deg, #e7efff, #dce5ff 45%, #eef1ff);
+		}
+
+		.visual-phone-front {
+			left: 11rem;
+			top: 0;
+			width: 9.2rem;
+			height: 17.1rem;
+			border-color: rgba(79, 91, 169, 0.72);
+			background: linear-gradient(180deg, #e7efff, #d6e2ff 45%, #f1f4ff);
+			z-index: 2;
+		}
+
+		.visual-card,
+		.visual-card-large {
+			position: absolute;
+			border-radius: 1rem;
+			background:
+				linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08)),
+				linear-gradient(135deg, #f4f7ff, #cdd9ff 55%, #eaf7f2);
+			box-shadow: 0 16px 28px rgba(1, 16, 62, 0.18);
+			border: 3px solid rgba(109, 82, 158, 0.35);
+		}
+
+		.visual-card {
+			left: -1rem;
+			top: 6.5rem;
+			width: 10.6rem;
+			height: 7rem;
+			transform: rotate(-2deg);
+			z-index: 3;
+		}
+
+		.visual-card-large {
+			left: 7.8rem;
+			top: 4.4rem;
+			width: 10.2rem;
+			height: 7.15rem;
+			transform: rotate(-0.5deg);
+			z-index: 3;
+		}
+
+		.visual-card::before,
+		.visual-card-large::before {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 4.5rem;
+			height: 4.5rem;
+			translate: -50% -50%;
+			border-radius: 999px;
+			border: 0.35rem solid rgba(79, 91, 169, 0.22);
+		}
+
+		.visual-card::after,
+		.visual-card-large::after {
+			content: "";
+			position: absolute;
+			right: 1rem;
+			bottom: 1rem;
+			width: 1.2rem;
+			height: 1.2rem;
+			border-radius: 999px;
+			background: #f5c400;
+			box-shadow: -2rem 0 0 0 rgba(255, 255, 255, 0.9);
+		}
+
+		@media (max-width: 1023px) {
+			.visual-stack-1,
+			.visual-stack-2,
+			.visual-stack-3,
+			.visual-shell {
+				width: min(100%, 24rem);
+			}
+		}
+
+		@media (max-width: 640px) {
+			.rule-title {
+				font-size: clamp(1.7rem, 8vw, 2.4rem);
+			}
+
+			.visual-phone-front {
+				left: 9.5rem;
+			}
+
+			.visual-phone-middle {
+				left: 6rem;
+			}
+
+			.visual-card-large {
+				left: 6.1rem;
+			}
+		}
+	</style>
+</BaseLayout>
