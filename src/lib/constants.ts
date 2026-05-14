@@ -18,7 +18,7 @@ export const DISCOVERY_SOURCE_OPTIONS: Array<{
 }> = [
   { value: "instagram", label: "Instagram" },
   { value: "linkedin", label: "LinkedIn" },
-  { value: "c3", label: "C3" },
+  { value: "c3", label: "Comunidad C3" },
   { value: "esen", label: "ESEN" },
   { value: "omegaup", label: "OmegaUp" },
   { value: "profesor", label: "Profesor / docente" },
@@ -36,6 +36,16 @@ export const SCHOOL_RESPONSIBLE_ROLES: Array<{
   { value: "director", label: "Director" },
   { value: "encargado_institucional", label: "Encargado institucional" },
   { value: "mentor", label: "Mentor" },
+  { value: "otro", label: "Otro" },
+];
+
+export const SCHOOL_GRADE_OPTIONS = [
+  { value: "7° grado", label: "7° grado" },
+  { value: "8° grado", label: "8° grado" },
+  { value: "9° grado", label: "9° grado" },
+  { value: "1er año de bachillerato", label: "1er año de bachillerato" },
+  { value: "2do año de bachillerato", label: "2do año de bachillerato" },
+  { value: "3er año de bachillerato", label: "3er año de bachillerato" },
   { value: "otro", label: "Otro" },
 ];
 

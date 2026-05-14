@@ -177,11 +177,15 @@ export function validateConfirmationStep(formData: RegistrationFormData): FieldE
 
   if (formData.category === "colegios") {
     const files = formData.schoolImageConsentFiles;
-    const hasConsentFiles = Array.isArray(files)
-      ? files.length > 0
-      : Boolean(files);
-    if (!hasConsentFiles) {
-      errors.schoolImageConsentFiles = "Debes subir al menos un consentimiento de imagen.";
+    const expectedCount = formData.teamSize ?? 3;
+    const fileCount = Array.isArray(files)
+      ? files.filter(Boolean).length
+      : files
+        ? 1
+        : 0;
+    
+    if (fileCount !== expectedCount) {
+      errors.schoolImageConsentFiles = `Debes subir exactamente ${expectedCount} consentimiento(s) de imagen (uno por integrante).`;
     }
   }
 
