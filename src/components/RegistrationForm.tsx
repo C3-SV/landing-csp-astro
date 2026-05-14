@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { genUploader } from "uploadthing/client";
 
-import { buildRegistrationEmailPayload } from "@/lib/email-preview";
+import { sendRegistrationConfirmationEmail } from "@/lib/api/sendRegistrationConfirmationEmail";
 import { createRegistration } from "@/lib/firebase-registrations";
 import {
   DISCOVERY_SOURCE_OPTIONS,
@@ -808,14 +808,27 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
       }
 
       const registrationId = await createRegistration(uploadedFormData);
-      const emailPayload = buildRegistrationEmailPayload(uploadedFormData, registrationId);
-      console.log(
-        "[EMAIL PREVIEW] Pendiente integrar con Resend / SendGrid / Apps Script / Cloud Functions",
-        emailPayload,
-      );
+      let confirmationEmailStatus: "sent" | "warning" = "sent";
+
+      try {
+        await sendRegistrationConfirmationEmail(registrationId);
+      } catch (emailError) {
+        confirmationEmailStatus = "warning";
+        if (import.meta.env.DEV) {
+          console.error(
+            "[Registration] La inscripción se guardó, pero falló la solicitud de correo de confirmación.",
+            { registrationId, error: emailError },
+          );
+        }
+      }
+
       setSubmitStatus("success");
       window.localStorage.removeItem(DRAFT_KEY);
-      window.location.assign(`/inscripcion/exito?id=${registrationId}`);
+      const successParams = new URLSearchParams({
+        id: registrationId,
+        emailStatus: confirmationEmailStatus,
+      });
+      window.location.assign(`/inscripcion/exito?${successParams.toString()}`);
     } catch (error) {
       setSubmitError(
         error instanceof Error ? error.message : "No fue posible enviar la inscripción.",
