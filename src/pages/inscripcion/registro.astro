@@ -2,7 +2,6 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { EVENT_NAME } from "../../lib/constants";
 import PublicFooter from "../../components/PublicFooter.astro";
-import PublicHeader from "../../components/PublicHeader.astro";
 import { RegistrationRoute } from "../../components/RegistrationRoute";
 import UploadThingSSR from "../../components/UploadThingSSR.astro";
 
@@ -11,11 +10,10 @@ export const prerender = true;
 
 <BaseLayout title={`Formulario de inscripción | ${EVENT_NAME}`} description="Inicio del formulario de registro de equipos.">
   <UploadThingSSR />
-  <div class="flex min-h-screen flex-col">
-    <PublicHeader />
+  <div class="flex flex-1 flex-col">
     <main class="mx-auto w-full max-w-4xl flex-1 px-4 py-10">
       <h1 class="mb-2 font-display text-3xl font-semibold text-csp-primary">Formulario de inscripción</h1>
-      <p class="mb-6 text-sm text-csp-black/70">Completa los 6 pasos para registrar oficialmente al equipo.</p>
+      <p class="mb-6 text-sm text-csp-black/70">Completa los 4 pasos para registrar oficialmente al equipo.</p>
 
       <RegistrationRoute client:load />
     </main>

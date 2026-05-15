@@ -39,10 +39,9 @@ const missingTokenResponse = new Response(
 );
 
 const handleUploadThingRequest = async (request: Request) => {
-  const handlers = createHandlers();
-  if (!handlers) return missingTokenResponse;
-
   try {
+    const handlers = createHandlers();
+    if (!handlers) return missingTokenResponse;
     return await handlers(request);
   } catch (error) {
     console.error("[UploadThing] /api/uploadthing failed:", error);

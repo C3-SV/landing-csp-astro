@@ -6,6 +6,7 @@ import { createRegistration } from "@/lib/firebase-registrations";
 import {
   DISCOVERY_SOURCE_OPTIONS,
   SCHOOL_RESPONSIBLE_ROLES,
+  SCHOOL_GRADE_OPTIONS,
 } from "@/lib/constants";
 import type {
   FieldErrors,
@@ -1165,13 +1166,14 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
                               />
                             </div>
                           ) : (
-                            <TextInput
+                            <SelectInput
                               error={visibleErrors[`${prefix}.schoolGrade`]}
                               id={`member-${memberIndex}-schoolGrade`}
                               label="Grado / año escolar *"
-                              placeholder="Ej. 3° año"
                               onChange={(event) => updateMember(memberIndex, { schoolGrade: event.target.value })}
                               onBlur={() => handleFieldBlur(`${prefix}.schoolGrade`)}
+                              options={SCHOOL_GRADE_OPTIONS}
+                              placeholder="Selecciona el grado o año"
                               value={member.schoolGrade ?? ""}
                             />
                           )}
@@ -1525,44 +1527,60 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
                   <FieldError error={visibleErrors.universityImageConsentAccepted} />
                 </>
               ) : (
-                <div className="space-y-2">
-                  <p className="text-sm font-medium text-csp-primary">
-                    Consentimientos de uso de imagen *
-                  </p>
-                  {getConsentFileList(formData.schoolImageConsentFiles).length > 0 ? (
-                    <div className="space-y-2">
-                      {getConsentFileList(formData.schoolImageConsentFiles).map((file, index) => {
-                        const fileName = (file as any).fileName || (file as any).name || `Archivo ${index + 1}`;
-                        const fileSize = (file as any).fileSize || (file as any).size || 0;
-                        return (
-                          <div key={(file as any).fileKey ?? fileName} className="rounded-md border border-csp-accent/30 bg-csp-white p-2 text-xs">
-                            <p className="font-medium text-csp-primary">{fileName}</p>
-                            <p className="text-csp-black/60">{fileSize ? formatBytes(fileSize) : ""}</p>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  ) : (
-                    <p className="text-xs text-csp-black/60">No hay consentimientos adjuntos</p>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-sm font-medium text-csp-primary">
+                      Consentimientos de uso de imagen *
+                    </p>
+                    <p className="mt-1 text-xs text-csp-black/80">
+                      Descarga, imprime, firma y escanea el siguiente documento para cada integrante del equipo.
+                    </p>
+                    <a
+                      href="/consentimiento/AUTORIZACION%20DE%20PADRES%20DE%20MENORES%20PARA%20UTILIZAR%20IM%C3%81GENES%20Y%20VIDEO%202025.pdf"
+                      target="_blank"
+                      download
+                      className="mt-2 inline-flex items-center gap-1 font-medium text-csp-primary underline hover:text-csp-primary/80 text-sm"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                      Descargar Formato de Consentimiento
+                    </a>
+                  </div>
+
+                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    {formData.members.slice(0, formData.teamSize || 3).map((member, index) => {
+                      const memberFiles = formData.schoolImageConsentFiles?.[index]
+                        ? [formData.schoolImageConsentFiles[index]]
+                        : [];
+                      
+                      const label = `Consentimiento de ${member.firstName || `Integrante ${index + 1}`}`;
+                      
+                      return (
+                        <div key={member.id} className="rounded-lg border border-csp-accent/30 bg-white p-3 shadow-sm">
+                          <UploadField
+                            description="PDF, PNG o JPG (máx. 3MB)"
+                            endpoint="consentUploader"
+                            label={label}
+                            multiple={false}
+                            onChange={(file) => {
+                              setFormData((prev) => {
+                                const prevFiles = prev.schoolImageConsentFiles || [];
+                                const newFiles = [...prevFiles];
+                                newFiles[index] = file as any;
+                                const next = { ...prev, schoolImageConsentFiles: newFiles };
+                                setErrors(validateStepByKey(next, currentStepKey));
+                                return next;
+                              });
+                            }}
+                            value={memberFiles}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                  
+                  {visibleErrors.schoolImageConsentFiles && (
+                    <FieldError error={visibleErrors.schoolImageConsentFiles} />
                   )}
-                  <UploadField
-                    description="Adjunta los consentimientos de uso de imagen firmados por los responsables correspondientes de cada estudiante."
-                    endpoint="consentUploader"
-                    error={visibleErrors.schoolImageConsentFiles}
-                    label="Cargar consentimientos de uso de imagen *"
-                    multiple
-                    onChange={(files) =>
-                      setFormData((prev) => {
-                        const next = {
-                          ...prev,
-                          schoolImageConsentFiles: (files as UploadedFileMetadata[]) ?? [],
-                        };
-                        setErrors(validateStepByKey(next, currentStepKey));
-                        return next;
-                      })
-                    }
-                    value={formData.schoolImageConsentFiles ?? []}
-                  />
                 </div>
               )}
             </Card>

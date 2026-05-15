@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap");
+
 @config "../../tailwind.config.mjs";
 
 @import "tailwindcss";
@@ -37,4 +39,23 @@ nav,
   font-size: 0.875rem;
   line-height: 1.25rem;
   color: #ba1a1a;
+}
+
+/* Keep navbar visibility after third-party UploadThing utility styles. */
+.site-nav-desktop {
+  display: none;
+}
+
+.site-nav-mobile {
+  display: block;
+}
+
+@media (min-width: 48rem) {
+  .site-nav-desktop {
+    display: block;
+  }
+
+  .site-nav-mobile {
+    display: none;
+  }
 }

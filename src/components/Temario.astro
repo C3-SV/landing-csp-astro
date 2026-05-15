@@ -1,0 +1,288 @@
+---
+
+---
+
+<link rel="preload" as="image" href="/index/colegios.webp" fetchpriority="high" />
+<link
+    rel="preload"
+    as="image"
+    href="/index/universidades.webp"
+    fetchpriority="high"
+/>
+
+<section id="syllabus-section" class="w-full py-16 md:py-24">
+    <div class="mx-auto max-w-6xl px-4">
+        <div class="mb-12 md:mb-16">
+            <h2
+                class="font-display text-4xl font-bold text-csp-primary md:text-5xl"
+            >
+                Temario
+            </h2>
+            <p class="mt-4 text-base text-csp-black/60 md:text-lg">
+                Explora los temas y contenidos que se cubren en la Copa
+                Salvadoreña de Programación. Para prepararte, ¡te recomendamos
+                estudiarlos!
+            </p>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="mb-12 flex justify-center gap-8">
+            <button
+                id="schools-tab"
+                data-category="schools"
+                class="tab-button border-b-2 border-csp-primary pb-2 font-display text-lg font-semibold text-csp-primary transition-all duration-200"
+            >
+                Escuelas
+            </button>
+            <button
+                id="universities-tab"
+                data-category="universities"
+                class="tab-button border-b-2 border-transparent pb-2 font-display text-lg font-semibold text-csp-black/50 transition-all duration-200 hover:text-csp-black/70"
+            >
+                Universidades
+            </button>
+        </div>
+
+        <!-- Content Grid: Image and Topic List -->
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+            <!-- Mockup/Image Placeholder -->
+            <div
+                class="relative min-h-72 overflow-hidden rounded-2xl bg-linear-to-br from-csp-soft to-white shadow-csp md:h-98"
+            >
+                <img
+                    data-syllabus-image="schools"
+                    src="/index/colegios.webp"
+                    class="absolute inset-0 h-full w-full object-cover object-center"
+                    alt="Participantes de colegios en la Copa Salvadoreña de Programación"
+                    loading="eager"
+                    decoding="async"
+                    fetchpriority="high"
+                    aria-hidden="false"
+                />
+                <img
+                    data-syllabus-image="universities"
+                    src="/index/universidades.webp"
+                    class="absolute inset-0 h-full w-full object-cover object-center opacity-0"
+                    alt="Participantes de universidades en la Copa Salvadoreña de Programación"
+                    loading="eager"
+                    decoding="async"
+                    aria-hidden="true"
+                />
+            </div>
+
+            <!-- Topics List -->
+            <div
+                class="flex flex-col overflow-hidden rounded-xl border border-csp-blue/20 bg-csp-white p-6 shadow-sm md:h-98"
+            >
+                <ul
+                    id="topics-list"
+                    class="columns-1 text-csp-black/70 md:h-full md:min-h-0 md:flex-1 md:columns-2 md:gap-x-8 md:[column-fill:auto]"
+                >
+                    <!-- Topics will be inserted by JavaScript -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const schoolTopics = [
+        "Simulación",
+        "Búsqueda completa",
+        "Sorting",
+        "Greedy",
+        "Recursividad",
+        "Geometría",
+        "Prefix Sums",
+        "Introducción a Grafos",
+        "Ad Hoc",
+        "Two Pointers",
+        "Binary Search",
+    ];
+
+    const universitiesTopics = [
+        ...schoolTopics,
+        "Custom Comparators",
+        "Navegación de Grafos",
+        "Flood Fill",
+        "Introducción a Árboles",
+        "Bitwise",
+        "Matemática (Combinatoria, Teoría de Números, Álgebra)",
+        "Programación Dinámica",
+        "Ordenamiento Topológico",
+        "Disjoint Set Union",
+    ];
+
+    // Function to render topics
+    function renderTopics(category: string) {
+        const topicsList = document.getElementById("topics-list");
+        const placeholderText = document.getElementById("placeholder-text");
+
+        if (!topicsList) return;
+
+        // Get topics for the category
+        const topics =
+            category === "schools"
+                ? schoolTopics
+                : category === "universities"
+                  ? universitiesTopics
+                  : [];
+
+        // Clear existing topics
+        topicsList.innerHTML = "";
+
+        // Add topics in natural order; CSS columns handle vertical flow on desktop
+        topics.forEach((topic) => {
+            const li = document.createElement("li");
+            li.className = "mb-3 flex break-inside-avoid items-start gap-3";
+            li.innerHTML = `
+        <span class="mt-1 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-csp-primary"></span>
+        <span class="text-sm md:text-base">${topic}</span>
+      `;
+            topicsList.appendChild(li);
+        });
+
+        // Update placeholder text
+        if (placeholderText) {
+            placeholderText.textContent =
+                category === "schools" ? "Escuela" : "Universidad";
+        }
+    }
+
+    // Function to update the image for the selected category
+    function updateSyllabusImage(category: string) {
+        const images = document.querySelectorAll<HTMLImageElement>(
+            "[data-syllabus-image]",
+        );
+
+        images.forEach((image) => {
+            const isActive = image.dataset.syllabusImage === category;
+
+            image.classList.toggle("opacity-0", !isActive);
+            image.setAttribute("aria-hidden", String(!isActive));
+        });
+    }
+
+    const syllabusImageReady: Record<string, Promise<void> | undefined> = {};
+
+    function prepareSyllabusImage(category: string) {
+        if (!syllabusImageReady[category]) {
+            syllabusImageReady[category] = new Promise((resolve) => {
+                const image = document.querySelector<HTMLImageElement>(
+                    `[data-syllabus-image="${category}"]`,
+                );
+
+                if (!image) {
+                    resolve();
+                    return;
+                }
+
+                const finish = () => {
+                    if (image.decode) {
+                        image.decode().catch(() => undefined).then(resolve);
+                        return;
+                    }
+
+                    resolve();
+                };
+
+                if (image.complete && image.naturalWidth > 0) {
+                    finish();
+                    return;
+                }
+
+                image.addEventListener("load", finish, { once: true });
+                image.addEventListener("error", () => resolve(), {
+                    once: true,
+                });
+            });
+        }
+
+        return syllabusImageReady[category];
+    }
+
+    function updateTabButtons(category: string) {
+        const schoolsTab = document.getElementById(
+            "schools-tab",
+        ) as HTMLButtonElement;
+        const universitiesTab = document.getElementById(
+            "universities-tab",
+        ) as HTMLButtonElement;
+
+        if (category === "schools") {
+            // Schools tab active
+            schoolsTab?.classList.remove(
+                "border-transparent",
+                "text-csp-black/50",
+                "hover:text-csp-black/70",
+            );
+            schoolsTab?.classList.add("border-csp-primary", "text-csp-primary");
+
+            universitiesTab?.classList.remove(
+                "border-csp-primary",
+                "text-csp-primary",
+            );
+            universitiesTab?.classList.add(
+                "border-transparent",
+                "text-csp-black/50",
+                "hover:text-csp-black/70",
+            );
+        } else if (category === "universities") {
+            // Universities tab active
+            universitiesTab?.classList.remove(
+                "border-transparent",
+                "text-csp-black/50",
+                "hover:text-csp-black/70",
+            );
+            universitiesTab?.classList.add(
+                "border-csp-primary",
+                "text-csp-primary",
+            );
+
+            schoolsTab?.classList.remove(
+                "border-csp-primary",
+                "text-csp-primary",
+            );
+            schoolsTab?.classList.add(
+                "border-transparent",
+                "text-csp-black/50",
+                "hover:text-csp-black/70",
+            );
+        }
+    }
+
+    let selectedCategory = "schools";
+
+    // Function to handle tab switching
+    async function switchTab(category: string) {
+        if (category === selectedCategory) return;
+
+        selectedCategory = category;
+        await prepareSyllabusImage(category);
+
+        if (category !== selectedCategory) return;
+
+        updateTabButtons(category);
+        renderTopics(category);
+        updateSyllabusImage(category);
+    }
+
+    // Set up event listeners
+    document.addEventListener("DOMContentLoaded", () => {
+        const schoolsTab = document.getElementById("schools-tab");
+        const universitiesTab = document.getElementById("universities-tab");
+
+        schoolsTab?.addEventListener("click", () => void switchTab("schools"));
+        universitiesTab?.addEventListener("click", () =>
+            void switchTab("universities"),
+        );
+
+        void prepareSyllabusImage("schools");
+        void prepareSyllabusImage("universities");
+
+        // Initialize with schools tab
+        updateTabButtons("schools");
+        renderTopics("schools");
+        updateSyllabusImage("schools");
+    });
+</script>

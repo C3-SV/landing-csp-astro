@@ -76,8 +76,19 @@ export async function createRegistration(formData: RegistrationFormData): Promis
     },
     status: "recibida",
     adminNotes: "",
+    faseActual: "online",
+    estadoCompetitivo: "pendiente",
+    puntajeOnline: null,
+    puntajePresencial: null,
+    puntajeFinal: null,
+    rankingOnline: null,
+    rankingPresencial: null,
+    posicionFinal: null,
+    fechaPresencial: null,
+    sedePresencial: null,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
+    updatedBy: null,
   };
 
   const cleanedPayload = removeUndefined(rawPayload);
