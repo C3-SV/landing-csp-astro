@@ -1,27 +1,32 @@
 ---
-import '../styles/global.css'
+import "../styles/global.css";
 ---
 
-<section class="flex flex-row w-full h-auto overflow-hidden">
-  <div class="w-full md:w-2/5 bg-[#F5F5F5] flex items-center px-16 py-20">
-    <div>
-      <h1 class="[font-family:var(--font-poppins)] font-black text-7xl leading-tight text-gray-900 mb-4">
-        Copa<br/> Salvadoreña de<br/> Programación
-      </h1>
-      <br>
-      <p class="[font-family:var(--font-inter)] text-2xl leading-relaxed text-gray-600">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris.
-      </p>
-    </div>
-  </div>
+<section class="w-full bg-csp-background py-12 sm:py-16 lg:py-20">
+    <div
+        class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8"
+    >
+        <div class="max-w-xl">
+            <h1
+                class="font-display text-4xl font-black leading-tight text-csp-primary sm:text-5xl lg:text-6xl"
+            >
+                Copa Salvadoreña de Programación
+            </h1>
+            <p
+                class="mt-5 max-w-lg text-sm leading-6 text-csp-black/60 sm:text-base"
+            >
+                La competencia nacional que reúne el talento de colegios y
+                universidades para resolver problemas, fortalecer su pensamiento
+                algorítmico y conectar con una comunidad técnica de alto nivel.
+            </p>
+        </div>
 
-  <div class="w-3/5">
-    <img
-      src="../../public/Hero/fotoHero.jpg"
-      alt=""
-      class="w-full h-auto"
-    />
-  </div>
+        <div class="flex justify-center lg:justify-end">
+            <img
+                src="/index/fotoHero.webp"
+                alt="Participantes de la Copa Salvadoreña de Programación"
+                class="h-64 w-full max-w-lg rounded-2xl object-cover shadow-csp-lg sm:h-80 lg:h-96 lg:max-w-xl"
+            />
+        </div>
+    </div>
 </section>

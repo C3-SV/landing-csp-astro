@@ -40,3 +40,22 @@ nav,
   line-height: 1.25rem;
   color: #ba1a1a;
 }
+
+/* Keep navbar visibility after third-party UploadThing utility styles. */
+.site-nav-desktop {
+  display: none;
+}
+
+.site-nav-mobile {
+  display: block;
+}
+
+@media (min-width: 48rem) {
+  .site-nav-desktop {
+    display: block;
+  }
+
+  .site-nav-mobile {
+    display: none;
+  }
+}
