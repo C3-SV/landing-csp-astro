@@ -1,5 +1,6 @@
 ---
 import { EVENT_NAME } from "../lib/constants";
+import Footer from "../components/Footer.astro";
 import PublicHeader from "../components/PublicHeader.astro";
 import "../styles/global.css";
 
@@ -27,5 +28,6 @@ const {
     <body class="min-h-full flex flex-col bg-csp-background text-csp-black">
         <PublicHeader />
         <slot />
+        <Footer />
     </body>
 </html>
