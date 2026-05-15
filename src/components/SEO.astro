@@ -1,0 +1,50 @@
+---
+import { absoluteUrl, siteConfig } from "../lib/site";
+
+type Props = {
+    title?: string;
+    description?: string;
+    canonical?: string;
+    image?: string;
+    type?: "website" | "article";
+    noindex?: boolean;
+};
+
+const {
+    title = siteConfig.displayName,
+    description = siteConfig.description,
+    canonical,
+    image = siteConfig.defaultOgImage,
+    type = "website",
+    noindex = false,
+} = Astro.props as Props;
+
+const pageTitle =
+    title === siteConfig.displayName || title.includes(siteConfig.parentBrand)
+        ? title
+        : `${title} | ${siteConfig.parentBrand}`;
+const canonicalUrl = canonical ?? absoluteUrl(Astro.url.pathname);
+const absoluteImage = absoluteUrl(image);
+const keywords = siteConfig.keywords.join(", ");
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? "noindex,nofollow" : "index,follow"} />
+<meta name="keywords" content={keywords} />
+<meta name="author" content={siteConfig.parentFullName} />
+<link rel="canonical" href={canonicalUrl} />
+
+<meta property="og:type" content={type} />
+<meta property="og:locale" content={siteConfig.locale} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:site_name" content={siteConfig.displayName} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={absoluteImage} />
+<meta property="og:image:alt" content={siteConfig.displayName} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteImage} />

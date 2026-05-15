@@ -1,17 +1,28 @@
 ---
 import { EVENT_NAME } from "../lib/constants";
+import SEO from "../components/SEO.astro";
 import Footer from "../components/Footer.astro";
 import PublicHeader from "../components/PublicHeader.astro";
+import Analytics from "@vercel/analytics/astro";
+import { copaEventJsonLd, organizationJsonLd } from "../lib/structured-data";
 import "../styles/global.css";
 
 type Props = {
     title?: string;
     description?: string;
+    canonical?: string;
+    image?: string;
+    type?: "website" | "article";
+    noindex?: boolean;
 };
 
 const {
     title = EVENT_NAME,
     description = "Módulo de inscripción y administración de la CSP 2026.",
+    canonical,
+    image,
+    type,
+    noindex,
 } = Astro.props as Props;
 ---
 
@@ -20,10 +31,27 @@ const {
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content={description} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
         <link rel="shortcut icon" href="/favicon.svg?v=2" />
-        <title>{title}</title>
+        <SEO
+            title={title}
+            description={description}
+            canonical={canonical}
+            image={image}
+            type={type}
+            noindex={noindex}
+        />
+        <script
+            is:inline
+            type="application/ld+json"
+            set:html={JSON.stringify(organizationJsonLd)}
+        />
+        <script
+            is:inline
+            type="application/ld+json"
+            set:html={JSON.stringify(copaEventJsonLd)}
+        />
+        <Analytics />
     </head>
     <body class="min-h-full flex flex-col bg-csp-background text-csp-black">
         <PublicHeader />
