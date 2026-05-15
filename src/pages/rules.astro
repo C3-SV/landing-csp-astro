@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { EVENT_NAME } from "../lib/constants";
+
+export const prerender = true;
+---
+
+<BaseLayout title={`Reglamento | ${EVENT_NAME}`} description="Reglamento de la Copa Salvadoreña de Programación.">
+    <main class="flex-1"></main>
+</BaseLayout>

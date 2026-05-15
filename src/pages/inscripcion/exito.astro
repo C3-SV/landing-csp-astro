@@ -2,7 +2,6 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { EVENT_NAME } from "../../lib/constants";
 import PublicFooter from "../../components/PublicFooter.astro";
-import PublicHeader from "../../components/PublicHeader.astro";
 import Card from "../../components/Card.astro";
 
 export const prerender = false;
@@ -18,8 +17,7 @@ const confirmationMessage = isEmailSent
 ---
 
 <BaseLayout title={`Inscripción enviada | ${EVENT_NAME}`} description="Confirmación de inscripción enviada correctamente.">
-  <div class="flex min-h-screen flex-col">
-    <PublicHeader />
+  <div class="flex flex-1 flex-col">
     <main class="mx-auto flex w-full max-w-4xl flex-1 items-center px-4 py-12">
       <Card class="w-full text-center">
         <h1 class="font-display text-3xl font-semibold text-csp-primary">Inscripción enviada</h1>

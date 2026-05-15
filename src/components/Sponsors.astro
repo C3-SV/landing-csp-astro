@@ -1,0 +1,65 @@
+---
+const mainSponsors = [
+    { name: "TechyWe", logo: "/sponsors/techywe.webp" },
+    { name: "Applaudo", logo: "/sponsors/applaudo.webp" },
+    { name: "Boxful", logo: "/sponsors/boxful.webp" },
+    { name: "RSM", logo: "/sponsors/rsm.webp" },
+];
+
+const supportingSponsors = [
+    { name: "Fusades", logo: "/sponsors/fusades.webp" },
+    { name: "OSI", logo: "/sponsors/logo_osi.webp" },
+    { name: "Ravn", logo: "/sponsors/ravn.webp" },
+    { name: "Enblueprint", logo: "/sponsors/enblueprint.webp" },
+];
+---
+
+<section id="sponsors" class="w-full py-16 md:py-20">
+    <div class="mx-auto max-w-6xl px-4">
+        <div class="mb-10 md:mb-12">
+            <h2
+                class="font-display text-4xl font-bold text-csp-primary md:text-5xl"
+            >
+                Nuestros Patrocinadores y Aliados
+            </h2>
+        </div>
+
+        <div class="space-y-10">
+            <div
+                class="grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-8 lg:grid-cols-4"
+            >
+                {
+                    mainSponsors.map((sponsor) => (
+                        <div class="flex h-28 w-full max-w-60 items-center justify-center rounded-lg px-4 py-4 transition-transform duration-200 ease-out hover:scale-105 md:h-32 md:max-w-64">
+                            <img
+                                src={sponsor.logo}
+                                alt={`Logo de ${sponsor.name}`}
+                                class="max-h-24 max-w-full object-contain md:max-h-28"
+                                loading="lazy"
+                            />
+                        </div>
+                    ))
+                }
+            </div>
+
+            <div class="mx-auto max-w-4xl">
+                <div
+                    class="grid grid-cols-2 items-center justify-items-center gap-x-6 gap-y-6 lg:grid-cols-4"
+                >
+                    {
+                        supportingSponsors.map((sponsor) => (
+                            <div class="flex h-24 w-full max-w-44 items-center justify-center rounded-lg px-4 py-3 opacity-80 transition-transform duration-200 ease-out hover:scale-105 md:max-w-48">
+                                <img
+                                    src={sponsor.logo}
+                                    alt={`Logo de ${sponsor.name}`}
+                                    class="max-h-16 max-w-full object-contain"
+                                    loading="lazy"
+                                />
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
