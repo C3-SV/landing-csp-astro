@@ -8,6 +8,9 @@ export default defineConfig({
   integrations: [react({ experimentalReactChildren: true })],
   output: "server",
   vite: {
+    optimizeDeps: {
+      include: ["uploadthing/client"],
+    },
     plugins: [tailwindcss()],
   },
   publicDir: "./public",
