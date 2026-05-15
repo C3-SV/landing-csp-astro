@@ -548,7 +548,10 @@ function Button({
 
 function Toast({ message }: { message: string }) {
   return (
-    <div className="fixed right-4 top-4 z-50 rounded-md border border-csp-blue/30 bg-csp-blue/10 px-4 py-3 text-sm font-medium text-csp-blue shadow-csp" role="status">
+    <div
+      className="fixed inset-x-4 top-24 z-40 mx-auto w-fit max-w-[calc(100vw-2rem)] rounded-md border border-csp-blue/30 bg-csp-white px-4 py-3 text-center text-sm font-medium text-csp-blue shadow-csp lg:left-auto lg:right-8 lg:mx-0 lg:text-left"
+      role="status"
+    >
       {message}
     </div>
   );

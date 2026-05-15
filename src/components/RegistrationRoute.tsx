@@ -21,7 +21,7 @@ export function RegistrationRoute() {
     const parsedCategory = parseCategory(params.get("categoria")?.trim() ?? null);
 
     if (!parsedCategory) {
-      window.location.replace("/inscripcion");
+      window.location.replace("/register");
       return;
     }
 
