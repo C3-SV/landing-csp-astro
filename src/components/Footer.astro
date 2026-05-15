@@ -22,51 +22,49 @@ const instagramHandle = "@c3.elsalvador";
                     alt="Logo C3"
                     class="h-20 w-auto"
                     loading="lazy"
-                    src="/brands/c3-blanco-no-fondo.png"
+                    src="/brands/c3-blanco-no-fondo.webp"
                 />
             </div>
 
             <div class="min-w-0 lg:justify-self-start">
-                    <h3 class="text-2xl font-semibold text-[#14B8A6]">
-                        Enlaces
-                    </h3>
-                    <nav aria-label="Enlaces del footer" class="mt-4">
-                        <ul class="flex flex-col gap-3 text-sm font-semibold">
-                            {
-                                links.map((link) => (
-                                    <li>
-                                        <a
-                                            class="text-csp-white/85 no-underline hover:text-[#cdf5f2ca] focus-visible:text-[#cdf5f2ca]"
-                                            href={link.href}
-                                        >
-                                            {link.label}
-                                        </a>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </nav>
+                <h3 class="text-2xl font-semibold text-[#14B8A6]">Enlaces</h3>
+                <nav aria-label="Enlaces del footer" class="mt-4">
+                    <ul class="flex flex-col gap-3 text-sm font-semibold">
+                        {
+                            links.map((link) => (
+                                <li>
+                                    <a
+                                        class="text-csp-white/85 no-underline hover:text-[#cdf5f2ca] focus-visible:text-[#cdf5f2ca]"
+                                        href={link.href}
+                                    >
+                                        {link.label}
+                                    </a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </nav>
             </div>
 
             <div class="min-w-0 lg:justify-self-start">
-                    <h3 class="text-2xl font-semibold text-[#14B8A6]">
-                        ¡Contáctanos!
-                    </h3>
-                    <div class="mt-4 text-sm font-semibold">
-                        <a
-                            class="break-words text-csp-white/85 no-underline hover:text-[#cdf5f2ca] focus-visible:text-[#cdf5f2ca]"
-                            href={`mailto:${email}`}
-                        >
-                            {email}
-                        </a>
-                    </div>
+                <h3 class="text-2xl font-semibold text-[#14B8A6]">
+                    ¡Contáctanos!
+                </h3>
+                <div class="mt-4 text-sm font-semibold">
+                    <a
+                        class="wrap-break-word text-csp-white/85 no-underline hover:text-[#cdf5f2ca] focus-visible:text-[#cdf5f2ca]"
+                        href={`mailto:${email}`}
+                    >
+                        {email}
+                    </a>
+                </div>
             </div>
 
             <div
-                class="flex w-full max-w-70 min-w-0 flex-col items-center justify-self-center gap-8 text-center lg:max-w-none lg:items-start lg:justify-self-stretch lg:!text-left"
+                class="flex w-full max-w-70 min-w-0 flex-col items-center justify-self-center gap-8 text-center lg:max-w-none lg:items-start lg:justify-self-stretch lg:text-left!"
             >
                 <p
-                    class="w-full break-words font-display text-center text-2xl font-semibold leading-7 lg:!text-left lg:text-3xl lg:leading-8"
+                    class="w-full wrap-break-word font-display text-center text-2xl font-semibold leading-7 lg:text-left! lg:text-3xl lg:leading-8"
                 >
                     Tu próximo gran algoritmo comienza aquí
                 </p>
