@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { EVENT_NAME } from "../lib/constants";
+import { pageMetadata } from "../lib/site";
 
 export const prerender = true;
 
@@ -54,8 +54,9 @@ const rules = [
 ---
 
 <BaseLayout
-    title={`Reglamento | ${EVENT_NAME}`}
-    description="Reglamento oficial de la Copa Salvadoreña de Programación 2026."
+    title={pageMetadata.rules.title}
+    description={pageMetadata.rules.description}
+    canonical={pageMetadata.rules.canonical}
 >
     <div class="min-h-screen bg-csp-background text-csp-black">
         <header class="relative overflow-hidden bg-csp-primary text-csp-white">

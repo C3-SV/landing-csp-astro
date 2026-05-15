@@ -1,0 +1,106 @@
+# Copa Salvadoreña de Programación 2026 | C3
+
+La Copa Salvadoreña de Programación 2026 es una iniciativa de C3 dentro de su línea Compite. Está enfocada en programación competitiva, resolución de problemas, pensamiento algorítmico y desarrollo de talento técnico joven.
+
+## Identidad
+
+Nombre del evento: Copa Salvadoreña de Programación 2026
+Forma corta: CSP 2026
+Marca madre: C3
+Nombre formal de la marca madre: Competitive Coding Club
+Línea estratégica: Compite
+Dominio oficial: https://copa.c3.com.sv
+Sitio principal de C3: https://c3.com.sv
+Ubicación principal: El Salvador
+Tagline C3: Compite. Crea. Conecta.
+
+## Descripción corta
+
+La Copa Salvadoreña de Programación 2026 reúne talento de colegios y universidades para resolver problemas, fortalecer su pensamiento algorítmico y conectar con una comunidad técnica de alto nivel.
+
+## Relación con C3
+
+C3 potencia talento joven mediante experiencias de alto nivel que integran competencia, creación y conexión. La Copa forma parte de C3 Compite, la línea enfocada en programación competitiva, retos, práctica técnica y comunidad alrededor de la resolución algorítmica.
+
+## Misión de C3
+
+Potenciar talento joven mediante experiencias de alto nivel que integran competencia, creación y conexión.
+
+## Visión de C3
+
+Ser el referente regional de una nueva generación técnica con pertenencia, oportunidades e impacto.
+
+## Enfoque de Copa
+
+- Programación competitiva
+- Resolución de problemas
+- Pensamiento algorítmico
+- Algoritmos y estructuras de datos
+- Entrenamiento técnico
+- Competencia sana y exigente
+- Comunidad técnica joven
+- Conexión con el ecosistema C3
+
+## Audiencias principales
+
+- Estudiantes de colegios.
+- Estudiantes universitarios.
+- Jóvenes programadores que quieren medir y mejorar su nivel técnico.
+- Instituciones educativas interesadas en programación competitiva.
+- Entrenadores, mentores y comunidades de programación.
+- Aliados interesados en impulsar talento técnico joven.
+
+## Información importante del sitio
+
+- Fecha de fase virtual: 1 de agosto de 2026.
+- Final colegial: 15 de agosto de 2026 en la ESEN.
+- Final universitaria: 5 de septiembre de 2026 en la ESEN.
+- Categorías: Colegios y Universidades.
+- Formato general: equipos de estudiantes de la misma institución.
+- Tamaño recomendado de equipo: 3 estudiantes.
+- Plataforma mencionada: OmegaUp.
+- Cantidad de problemas mencionada: 6 problemas.
+- Proceso de inscripción: formar equipo, llenar formulario, adjuntar carnets estudiantiles y esperar confirmación.
+- Inscripción: gratuita, según el contenido visible del sitio.
+- Requisito clave: todos los integrantes deben pertenecer a la misma institución académica.
+- Conducta: el uso de herramientas de IA está prohibido durante la competencia.
+- Recursos de práctica: https://www.youtube.com/@C3_ElSalvador
+- CTA principal: Inscríbete ya.
+- Contacto: competitivecodingclub.sv@gmail.com
+- Instagram: https://www.instagram.com/c3.elsalvador
+
+## Temario mencionado
+
+Escuelas: simulación, búsqueda completa, sorting, greedy, recursividad, geometría, prefix sums, introducción a grafos, ad hoc, two pointers y binary search.
+
+Universidades: incluye los temas de escuelas y agrega custom comparators, navegación de grafos, flood fill, introducción a árboles, bitwise, matemática, programación dinámica, ordenamiento topológico y disjoint set union.
+
+## Patrocinadores y aliados mencionados
+
+- TechyWe
+- Applaudo
+- Boxful
+- RSM
+- Fusades
+- OSI
+- Ravn
+- Enblueprint
+
+## Sitios oficiales
+
+- Sitio de Copa: https://copa.c3.com.sv
+- Sitio principal C3: https://c3.com.sv
+- Sitio futuro de Festival de Código: https://festival.c3.com.sv
+
+## Redes oficiales
+
+Instagram: https://www.instagram.com/c3.elsalvador
+LinkedIn: https://www.linkedin.com/company/c3-sv
+
+## Tono de comunicación
+
+Profesional, claro, técnico, sobrio, moderno e institucional. Copa comunica reto, precisión, excelencia técnica y crecimiento sin usar hype excesivo ni estética gamer.
+
+## Mensaje clave
+
+La Copa Salvadoreña de Programación 2026 de C3 impulsa talento técnico joven a través de competencia, práctica algorítmica y experiencias de alto nivel.

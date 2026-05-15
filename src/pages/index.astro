@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { EVENT_NAME } from "../lib/constants";
+import { pageMetadata } from "../lib/site";
 import Hero from "../components/Hero.astro";
 import DinamicaEvento from "@/components/DinamicaEvento.astro";
 import Temario from "../components/Temario.astro";
@@ -11,8 +11,9 @@ export const prerender = true;
 ---
 
 <BaseLayout
-    title={EVENT_NAME}
-    description="Sitio oficial de la Copa Salvadoreña de Programación 2026."
+    title={pageMetadata.home.title}
+    description={pageMetadata.home.description}
+    canonical={pageMetadata.home.canonical}
 >
     <div class="flex flex-1 flex-col">
         <Hero />
