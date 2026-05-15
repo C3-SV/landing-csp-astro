@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { EVENT_NAME } from "../lib/constants";
-import PublicFooter from "../components/PublicFooter.astro";
 import Hero from "../components/Hero.astro";
 import DinamicaEvento from "@/components/DinamicaEvento.astro";
 import Temario from "../components/Temario.astro";
@@ -21,6 +20,5 @@ export const prerender = true;
         <Temario />
         <Sponsors />
         <FAQ />
-        <PublicFooter />
     </div>
 </BaseLayout>
