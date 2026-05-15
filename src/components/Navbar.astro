@@ -1,0 +1,153 @@
+---
+const navLinks = [
+    { label: "Inicio", href: "/" },
+    { label: "Reglamento", href: "/rules" },
+];
+
+const cta = { label: "¡Inscríbete ya!", href: "/inscripcion" };
+---
+
+<!-- DesktopNav -->
+<nav
+    class="site-nav-desktop w-full border-b border-csp-white/15 bg-csp-primary text-csp-white"
+    aria-label="Desktop navigation"
+>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between py-4">
+            <a class="flex items-center" href="/" aria-label="Ir al inicio">
+                <img
+                    src="/brands/csp-logo-horizontal.webp"
+                    alt="Copa Salvadoreña de Programación"
+                    class="h-12 w-auto"
+                    loading="eager"
+                />
+            </a>
+
+            <div class="flex items-center gap-12">
+                <div class="flex items-center gap-12">
+                    {
+                        navLinks.map((link) => (
+                            <a
+                                href={link.href}
+                                class="text-sm font-medium text-csp-white/85 transition hover:text-csp-white"
+                            >
+                                {link.label}
+                            </a>
+                        ))
+                    }
+                </div>
+                <a
+                    href={cta.href}
+                    class="inline-flex items-center gap-2 rounded-lg border border-csp-white/70 px-4 py-2 text-sm font-semibold text-csp-white transition hover:bg-csp-white/10"
+                >
+                    <span>{cta.label}</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- MobileNav -->
+<nav
+    class="site-nav-mobile w-full border-b border-csp-white/15 bg-csp-primary text-csp-white"
+    aria-label="Mobile navigation"
+>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="flex items-center justify-between py-3">
+            <a
+                class="flex items-center gap-3"
+                href="/"
+                aria-label="Ir al inicio"
+            >
+                <img
+                    src="favicon.svg"
+                    alt="Logo CSP"
+                    class="h-12 object-contain"
+                    loading="eager"
+                />
+                <span class="font-display text-3xl font-bold tracking-normal">
+                    CSP
+                </span>
+            </a>
+
+            <button
+                type="button"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-csp-white/25 text-csp-white transition hover:bg-csp-white/10"
+                aria-label="Toggle navigation menu"
+                aria-controls="mobile-navigation"
+                aria-expanded="false"
+                data-nav-toggle
+            >
+                <span class="sr-only">Toggle navigation menu</span>
+                <svg
+                    class="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                >
+                    <path
+                        d="M4 7h16M4 12h16M4 17h16"
+                        class="stroke-current"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div
+            id="mobile-navigation"
+            class="hidden border-t border-csp-white/15 pb-4 pt-2"
+            data-nav-menu
+        >
+            <div class="flex flex-col gap-1">
+                {
+                    navLinks.map((link) => (
+                        <a
+                            href={link.href}
+                            class="rounded-lg px-3 py-3 text-sm font-medium text-csp-white/90 transition hover:bg-csp-white/10 hover:text-csp-white"
+                            data-nav-link
+                        >
+                            {link.label}
+                        </a>
+                    ))
+                }
+                <a
+                    href={cta.href}
+                    class="mt-2 inline-flex items-center justify-center gap-2 rounded-lg border border-csp-white/70 px-4 py-3 text-sm font-semibold text-csp-white transition hover:bg-csp-white/10"
+                    data-nav-link
+                >
+                    <span>{cta.label}</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    const toggle = document.querySelector("[data-nav-toggle]");
+    const menu = document.querySelector("[data-nav-menu]");
+    const mobileLinks = document.querySelectorAll("[data-nav-link]");
+
+    function setMenuOpen(isOpen: boolean) {
+        toggle?.setAttribute("aria-expanded", String(isOpen));
+        menu?.classList.toggle("hidden", !isOpen);
+    }
+
+    toggle?.addEventListener("click", () => {
+        const isOpen = toggle.getAttribute("aria-expanded") === "true";
+        setMenuOpen(!isOpen);
+    });
+
+    mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => setMenuOpen(false));
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            setMenuOpen(false);
+        }
+    });
+</script>

@@ -1,0 +1,116 @@
+---
+const faqs = [
+    {
+        question:
+            "¿Todos los miembros de mi equipo tienen que ser de mi institución?",
+        answer: "Sí, todos los miembros de un equipo deben ser estudiantes activos de la misma institución académica.",
+    },
+    {
+        question: "¿Puedo hacer equipo con gente de otros grados?",
+        answer: "Sí, puedes hacer equipo con personas de otros grados siempre que pertenezcan a la misma institución académica.",
+    },
+    {
+        question: "¿Puedo competir de forma individual?",
+        answer: "Si bien no es recomendado por la dificultad de la competencia, es permitido. Sin embargo, se aconseja formar un equipo de 3 personas para una mejor experiencia.",
+    },
+    {
+        question: "¿Puedo utilizar herramientas de IA en la competencia?",
+        answer: "No, el uso de cualquier tipo de herramienta IA está terminantemente prohibido en la CSP. Si el equipo evaluador determina que un equipo utilizó IA, será expulsado de este y futuros eventos.",
+    },
+    {
+        question:
+            "¿Cuántas computadoras podemos utilizar durante la competencia?",
+        answer: "El trabajo en equipo caracteriza la CSP. Para retarlo, cada equipo deberá utilizar una única computadora o dispositivo inteligente durante la competencia.",
+    },
+];
+---
+
+<section id="faq" class="w-full py-16 md:py-20" data-faq-section>
+    <div class="mx-auto max-w-6xl px-4">
+        <div class="mb-8 md:mb-10">
+            <h2
+                class="font-display text-4xl font-bold text-csp-primary md:text-5xl"
+            >
+                Preguntas Frecuentes
+            </h2>
+        </div>
+
+        <div class="divide-y divide-csp-black/10 border-y border-csp-black/10">
+            {
+                faqs.map((item, index) => {
+                    const panelId = `faq-answer-${index + 1}`;
+                    const buttonId = `faq-question-${index + 1}`;
+
+                    return (
+                        <div>
+                            <button
+                                id={buttonId}
+                                type="button"
+                                class="flex w-full items-center justify-between gap-5 py-5 px-4 text-left font-display text-base font-semibold text-csp-black transition hover:text-csp-primary md:text-lg"
+                                aria-expanded="false"
+                                aria-controls={panelId}
+                                data-faq-button
+                                data-faq-target={panelId}
+                            >
+                                <span>{item.question}</span>
+                                <svg
+                                    class="h-5 w-5 shrink-0 text-csp-primary transition-transform"
+                                    data-faq-icon
+                                    aria-hidden="true"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        class="stroke-current"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="m6 9 6 6 6-6"
+                                    />
+                                </svg>
+                            </button>
+                            <div
+                                id={panelId}
+                                class="hidden pb-5 pr-10 text-sm leading-6 text-csp-black/65 md:text-base"
+                                role="region"
+                                aria-labelledby={buttonId}
+                                data-faq-panel={panelId}
+                            >
+                                <p>{item.answer}</p>
+                            </div>
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    (() => {
+        const section = document.querySelector("[data-faq-section]");
+
+        if (!section) return;
+
+        const buttons = section.querySelectorAll("[data-faq-button]");
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+                const panelId = button.getAttribute("data-faq-target");
+                if (!panelId) return;
+
+                const panel = section.querySelector(
+                    `[data-faq-panel="${panelId}"]`,
+                );
+                const icon = button.querySelector("[data-faq-icon]");
+                const isExpanded =
+                    button.getAttribute("aria-expanded") === "true";
+
+                button.setAttribute("aria-expanded", String(!isExpanded));
+                panel?.classList.toggle("hidden", isExpanded);
+                icon?.classList.toggle("rotate-180", !isExpanded);
+                button.classList.toggle("text-csp-primary", !isExpanded);
+                button.classList.toggle("text-csp-black", isExpanded);
+            });
+        });
+    })();
+</script>

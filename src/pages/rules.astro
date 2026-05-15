@@ -1,0 +1,220 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { EVENT_NAME } from "../lib/constants";
+
+export const prerender = true;
+
+const rules = [
+    {
+        eyebrow: "Equipos",
+        title: "Cada equipo debe estar formado por 3 estudiantes de la misma institución.",
+        body: "Para pasar a la fase presencial, se tomarán a los 3 mejores equipos por institución. Esta política está sujeta a cambios, dependiendo del espacio disponible.",
+        image: "/rules-icons/regla1.png",
+    },
+    {
+        eyebrow: "Plataforma",
+        title: "Una cuenta de OmegaUp por equipo.",
+        body: "Los equipos deberán crear una cuenta en OmegaUp para participar. Solo se permite un usuario por equipo, y todas las soluciones deben enviarse desde esa cuenta oficial.",
+        image: "/rules-icons/regla2.png",
+        reverse: true,
+    },
+    {
+        eyebrow: "Problemas",
+        title: "Los equipos resolverán 6 problemas.",
+        body: "Los equipos recibirán 6 problemas para resolver. Las soluciones deben ser enviadas a través de la plataforma oficial de la competencia. Los problemas tomarán en cuenta el temario adjunto, así como generalidades de programación competitiva.",
+        image: "/rules-icons/regla3.png",
+    },
+    {
+        eyebrow: "Lenguajes y entornos de desarrollo",
+        title: "Usa Python, Java o C++ con acceso limitado a recursos",
+        body: "Podrán programar en Python, Java o C++ utilizando la documentación oficial desde las computadoras del lugar. Se permite el uso de teclado y mouse propios, pero no celulares, tabletas u otros dispositivos electrónicos, ni la comunicación con personas externas o el acceso a sitios web no autorizados. Pueden utilizar papel y lápiz para tomar apuntes.",
+        image: "/rules-icons/regla4.png",
+        reverse: true,
+    },
+    {
+        eyebrow: "Evaluación",
+        title: "Gana quien resuelve más problemas en menos tiempo.",
+        body: "Los equipos serán evaluados por la precisión y cantidad de problemas resueltos correctamente. En caso de empate, se considerará el tiempo en el que se enviaron las soluciones.",
+        image: "/rules-icons/regla5.png",
+    },
+    {
+        eyebrow: "Conducta",
+        title: "El uso de IA resulta en descalificación inmediata.",
+        body: "Se exige un comportamiento respetuoso en todo momento; no se permite lenguaje ofensivo ni actitudes despectivas. Está prohibido el plagio, la colaboración externa, el uso de inteligencia artificial y cualquier herramienta o sitio no autorizado. Cualquier infracción resultará en descalificación inmediata y puede implicar expulsión y veto en futuras ediciones.",
+        image: "/rules-icons/regla6.png",
+        reverse: true,
+    },
+    {
+        eyebrow: "Jurado",
+        title: "No hay apelaciones. El juez es automático.",
+        body: "OmegaUp evalúa los códigos con un jurado automatizado que compara los resultados del programa del equipo con las respuestas correctas ya definidas antes del concurso. No se admiten apelaciones.",
+        image: "/rules-icons/regla7.png",
+    },
+];
+---
+
+<BaseLayout
+    title={`Reglamento | ${EVENT_NAME}`}
+    description="Reglamento oficial de la Copa Salvadoreña de Programación 2026."
+>
+    <div class="min-h-screen bg-csp-background text-csp-black">
+        <header class="relative overflow-hidden bg-csp-primary text-csp-white">
+            <div class="absolute inset-0 opacity-90" aria-hidden="true">
+                <div
+                    class="-left-30 absolute top-65 h-64 w-64 rounded-full bg-white/8 blur-3xl"
+                >
+                </div>
+                <div
+                    class="absolute left-325 bottom-88 h-48 w-48 rounded-full bg-white/10 blur-2xl"
+                >
+                </div>
+            </div>
+
+            <div
+                class="relative mx-auto min-h-80 lg:min-h-112 w-full max-w-6xl px-4 pb-14 pt-10 sm:px-6 lg:px-8 lg:pb-20 lg:pt-14"
+            >
+                <h1
+                    class="max-w-5xl text-[2.95rem] font-bold leading-[0.95] tracking-tight text-csp-white sm:text-6xl lg:text-[5.15rem]"
+                >
+                    Conoce las reglas
+                    <span class="mt-2 block font-bold text-csp-accent"
+                        >antes de competir</span
+                    >
+                </h1>
+                <p
+                    class="mt-7 max-w-5xl text-base leading-8 text-csp-white/80 sm:text-lg"
+                >
+                    Todos los participantes deben conocer y respetar estas
+                    reglas. El incumplimiento puede resultar en descalificación
+                    inmediata del equipo.
+                </p>
+                <div
+                    class="pointer-events-none absolute h-56 w-56 rounded-full bg-white/8 blur-3xl sm:h-72 sm:w-72"
+                    style="right: 68rem; top: 12rem;"
+                >
+                </div>
+                <div
+                    class="pointer-events-none left-260 absolute bottom-60 h-56 w-56 rounded-full bg-white/8 blur-3xl sm:right-2 sm:h-80 sm:w-80"
+                >
+                </div>
+            </div>
+        </header>
+
+        <main
+            class="mx-auto flex w-full max-w-6xl flex-col gap-24 px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+        >
+            {
+                rules.map((rule, index) => {
+                    const reverse = rule.reverse ?? index % 2 === 1;
+                    return (
+                        <section
+                            class={`rule-row ${reverse ? "rule-row-reverse" : ""}`}
+                        >
+                            <div class="rule-copy">
+                                <p class="rule-eyebrow">{rule.eyebrow}</p>
+                                <h2 class="rule-title">{rule.title}</h2>
+                                <p class="rule-body">{rule.body}</p>
+                            </div>
+
+                            <div class="rule-visual" aria-hidden="true">
+                                {rule.image ? (
+                                    <img
+                                        class="rule-image"
+                                        src={rule.image}
+                                        alt=""
+                                        loading="lazy"
+                                    />
+                                ) : null}
+                            </div>
+                        </section>
+                    );
+                })
+            }
+        </main>
+    </div>
+
+    <style>
+        .rule-row {
+            display: grid;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .rule-row {
+                grid-template-columns: minmax(0, 1fr) minmax(22rem, 28rem);
+                gap: 3.5rem;
+            }
+
+            .rule-row-reverse {
+                grid-template-columns: minmax(22rem, 28rem) minmax(0, 1fr);
+            }
+
+            .rule-row-reverse .rule-copy {
+                order: 2;
+            }
+
+            .rule-row-reverse .rule-visual {
+                order: 1;
+            }
+        }
+
+        .rule-copy {
+            max-width: 40rem;
+        }
+
+        .rule-eyebrow {
+            display: inline-flex;
+            margin-bottom: 0.95rem;
+            padding: 0.5rem 0.85rem;
+            border-radius: 0.5rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: #0daa9f;
+            background: #0daaa027;
+        }
+
+        .rule-title {
+            font-family: var(--font-display), system-ui, sans-serif;
+            font-size: clamp(1.9rem, 2.8vw, 2.85rem);
+            line-height: 1.04;
+            font-weight: 600;
+            color: #4f5ba9;
+        }
+
+        .rule-body {
+            margin-top: 1.05rem;
+            max-width: 34rem;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: rgba(0, 0, 0, 0.761);
+        }
+
+        .rule-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .rule-image {
+            max-width: min(100%, 26rem);
+            max-height: 22rem;
+            height: auto;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 18px 34px rgba(1, 16, 62, 0.16));
+        }
+
+        @media (max-width: 640px) {
+            .rule-image {
+                max-height: 14rem;
+            }
+
+            .rule-title {
+                font-size: clamp(1.7rem, 8vw, 2.4rem);
+            }
+        }
+    </style>
+</BaseLayout>
