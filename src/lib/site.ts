@@ -108,6 +108,12 @@ export const pageMetadata = {
     canonical: absoluteUrl("/phases/"),
     noindex: true,
   },
+  countdown: {
+    title: `Countdown | ${siteConfig.name}`,
+    description:
+      "Cuenta regresiva en tiempo real hacia la fase virtual de la Copa Salvadoreña de Programación 2026, el 1 de agosto de 2026.",
+    canonical: absoluteUrl("/countdown/"),
+  },
   registrationForm: {
     title: `Formulario de inscripción | ${siteConfig.name}`,
     description:
