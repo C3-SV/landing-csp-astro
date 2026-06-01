@@ -56,7 +56,7 @@ export const prerender = true;
                     <div class="w-20 md:w-48 lg:w-64 h-32 md:h-64 lg:h-80 bg-csp-primary rounded-br-[100%]"></div>
                     <div class="absolute top-20 md:top-44 left-0 w-6 md:w-10 h-12 md:h-20 bg-[#0BAA9F] rounded-r-full border-t-[8px] md:border-t-[12px] border-b-[8px] md:border-b-[12px] border-[#f4f5f8]"></div>
                 </div>
-                <div class="absolute top-0 right-0 z-0 pointer-events-none flex justify-end transform scale-50 lg:scale-100 origin-top-right">
+                <div class="phases-right-blob absolute top-0 right-0 z-0 pointer-events-none flex justify-end transform scale-50 origin-top-right lg:scale-100">
                     <div class="absolute top-10 right-8 w-16 h-16 bg-csp-primary rounded-tl-full opacity-80"></div>
                     <div class="mt-20 w-32 h-64 border-[16px] border-csp-primary/20 rounded-l-full translate-x-12"></div>
                     <div class="absolute top-36 right-0 w-16 h-32 bg-csp-primary rounded-l-full"></div>
@@ -197,6 +197,12 @@ export const prerender = true;
                 object-position: 15% center;
                 -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 10%, black 50%);
                 mask-image: linear-gradient(to right, transparent 0%, transparent 10%, black 50%);
+            }
+        }
+
+        @media (max-width: 639px) {
+            .phases-right-blob {
+                display: none;
             }
         }
     </style>
