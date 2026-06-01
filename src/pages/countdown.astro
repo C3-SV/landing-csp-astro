@@ -1,0 +1,145 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageMetadata, siteConfig } from "../lib/site";
+
+export const prerender = true;
+
+const countdownTarget = `${siteConfig.event.virtualPhaseDate}T07:00:00-06:00`;
+---
+
+<BaseLayout
+    title={pageMetadata.countdown.title}
+    description={pageMetadata.countdown.description}
+    canonical={pageMetadata.countdown.canonical}
+>
+    <main class="flex-1 overflow-hidden bg-csp-primary">
+        <section class="relative isolate overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(11,170,159,0.18),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(69,92,233,0.22),transparent_30%),linear-gradient(180deg,#3A2E89_0%,#2F256F_52%,#0F203E_100%)]"></div>
+            <div class="absolute -left-32 top-10 h-72 w-72 rounded-full bg-csp-teal/15 blur-3xl"></div>
+            <div class="absolute -right-24 top-24 h-80 w-80 rounded-full bg-csp-blue/20 blur-3xl"></div>
+            <div class="absolute bottom-0 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-white/10 blur-3xl"></div>
+
+            <div class="relative mx-auto flex min-h-[calc(100vh-9rem)] w-full max-w-7xl items-center px-4 py-16 sm:px-6 lg:px-8">
+                <div class="grid w-full gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+                    <div class="max-w-2xl text-center lg:text-left">
+                                        <p class="mb-4 text-xs font-semibold uppercase tracking-[0.45em] text-csp-teal/90">
+                            Cuenta regresiva oficial
+                        </p>
+
+                        <h1 class="font-display text-4xl font-black tracking-tight text-csp-white sm:text-5xl lg:text-6xl">
+                            Falta muy poco para la
+                            <span class="block text-csp-teal">fase virtual</span>
+                        </h1>
+
+                        <p class="mx-auto mt-6 max-w-xl text-base leading-7 text-csp-white/75 sm:text-lg lg:mx-0">
+                            Seguimos la cuenta en tiempo real hacia el <strong class="text-csp-white">1 de agosto de 2026</strong>,
+                            cuando arranca la fase virtual de la Copa Salvadoreña de Programación.
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -inset-1 rounded-[2rem] bg-gradient-to-br from-csp-teal/40 via-csp-blue/20 to-white/0 opacity-70 blur-xl"></div>
+                        <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 p-6 shadow-[0_24px_80px_rgba(4,11,31,0.35)] backdrop-blur-xl sm:p-8">
+                            <div class="mb-6 flex items-center justify-between gap-4">
+                                <div>
+                                    <p class="text-xs font-semibold uppercase tracking-[0.35em] text-csp-white/55">
+                                        Faltan solo
+                                    </p>
+                                    <p class="mt-2 font-display text-2xl font-bold text-csp-white">
+                                        1 de agosto de 2026
+                                    </p>
+                                </div>
+
+                                <div class="rounded-full border border-csp-teal/40 bg-csp-teal/15 px-4 py-2 text-sm font-semibold text-csp-teal">
+                                    En vivo
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                                <div class="rounded-[1.25rem] border border-white/10 bg-csp-primary/40 p-4 text-center shadow-lg">
+                                    <span id="countdown-days" class="block text-5xl font-black leading-none tracking-[-0.06em] text-csp-teal sm:text-6xl">
+                                        00
+                                    </span>
+                                    <span class="mt-3 block text-[0.65rem] font-semibold uppercase tracking-[0.38em] text-csp-white/50">
+                                        Días
+                                    </span>
+                                </div>
+
+                                <div class="rounded-[1.25rem] border border-white/10 bg-csp-primary/40 p-4 text-center shadow-lg">
+                                    <span id="countdown-hours" class="block text-5xl font-black leading-none tracking-[-0.06em] text-csp-white sm:text-6xl">
+                                        00
+                                    </span>
+                                    <span class="mt-3 block text-[0.65rem] font-semibold uppercase tracking-[0.38em] text-csp-white/50">
+                                        Horas
+                                    </span>
+                                </div>
+
+                                <div class="rounded-[1.25rem] border border-white/10 bg-csp-primary/40 p-4 text-center shadow-lg">
+                                    <span id="countdown-minutes" class="block text-5xl font-black leading-none tracking-[-0.06em] text-csp-teal sm:text-6xl">
+                                        00
+                                    </span>
+                                    <span class="mt-3 block text-[0.65rem] font-semibold uppercase tracking-[0.38em] text-csp-white/50">
+                                        Minutos
+                                    </span>
+                                </div>
+
+                                <div class="rounded-[1.25rem] border border-white/10 bg-csp-primary/40 p-4 text-center shadow-lg">
+                                    <span id="countdown-seconds" class="block text-5xl font-black leading-none tracking-[-0.06em] text-csp-white sm:text-6xl">
+                                        00
+                                    </span>
+                                    <span class="mt-3 block text-[0.65rem] font-semibold uppercase tracking-[0.38em] text-csp-white/50">
+                                        Segundos
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-[0.35em] text-csp-white/40">
+                                <span>Copa Salvadoreña de Programación</span>
+                                <span>Fase virtual</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script is:inline define:vars={{ countdownTarget }}>
+        const target = new Date(countdownTarget);
+        const daysEl = document.getElementById("countdown-days");
+        const hoursEl = document.getElementById("countdown-hours");
+        const minutesEl = document.getElementById("countdown-minutes");
+        const secondsEl = document.getElementById("countdown-seconds");
+
+        function pad(value) {
+            return String(value).padStart(2, "0");
+        }
+
+        function renderCountdown() {
+            const now = new Date();
+            const diff = target.getTime() - now.getTime();
+
+            if (diff <= 0) {
+                if (daysEl) daysEl.textContent = "00";
+                if (hoursEl) hoursEl.textContent = "00";
+                if (minutesEl) minutesEl.textContent = "00";
+                if (secondsEl) secondsEl.textContent = "00";
+                return;
+            }
+
+            const totalSeconds = Math.floor(diff / 1000);
+            const days = Math.floor(totalSeconds / 86400);
+            const hours = Math.floor((totalSeconds % 86400) / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+
+            if (daysEl) daysEl.textContent = pad(days);
+            if (hoursEl) hoursEl.textContent = pad(hours);
+            if (minutesEl) minutesEl.textContent = pad(minutes);
+            if (secondsEl) secondsEl.textContent = pad(seconds);
+        }
+
+        renderCountdown();
+        window.setInterval(renderCountdown, 1000);
+    </script>
+</BaseLayout>

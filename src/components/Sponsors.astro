@@ -7,10 +7,15 @@ const mainSponsors = [
 ];
 
 const supportingSponsors = [
+    { name: "Search You", logo: "/sponsors/search-you.png" },
     { name: "Fusades", logo: "/sponsors/fusades.webp" },
     { name: "OSI", logo: "/sponsors/logo_osi.webp" },
     { name: "Ravn", logo: "/sponsors/ravn.webp" },
     { name: "Enblueprint", logo: "/sponsors/enblueprint.webp" },
+];
+
+const lowerTierSponsors = [
+    { name: "AFP Crecer", logo: "/sponsors/afp-crecer.png" },
 ];
 ---
 
@@ -42,9 +47,9 @@ const supportingSponsors = [
                 }
             </div>
 
-            <div class="mx-auto max-w-4xl">
+            <div class="mx-auto max-w-5xl">
                 <div
-                    class="grid grid-cols-2 items-center justify-items-center gap-x-6 gap-y-6 lg:grid-cols-4"
+                    class="grid grid-cols-2 items-center justify-items-center gap-x-6 gap-y-6 lg:grid-cols-5"
                 >
                     {
                         supportingSponsors.map((sponsor) => (
@@ -52,7 +57,24 @@ const supportingSponsors = [
                                 <img
                                     src={sponsor.logo}
                                     alt={`Logo de ${sponsor.name}`}
-                                    class="max-h-10 max-w-full object-contain"
+                                    class="max-h-[2.9rem] max-w-full object-contain md:max-h-[3.25rem]"
+                                    loading="lazy"
+                                />
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <div class="mx-auto max-w-3xl">
+                <div class="grid grid-cols-1 items-center justify-items-center">
+                    {
+                        lowerTierSponsors.map((sponsor) => (
+                            <div class="flex h-20 w-full max-w-56 items-center justify-center rounded-lg px-4 py-3 opacity-85 transition-transform duration-200 ease-out hover:scale-105 md:h-24 md:max-w-60">
+                                <img
+                                    src={sponsor.logo}
+                                    alt={`Logo de ${sponsor.name}`}
+                                    class="max-h-[1.7rem] max-w-full object-contain md:max-h-[1.9rem]"
                                     loading="lazy"
                                 />
                             </div>
