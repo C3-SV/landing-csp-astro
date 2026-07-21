@@ -3,6 +3,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { pageMetadata } from "../lib/site";
 
 export const prerender = true;
+
+const prizeCategories = [
+    {
+        name: "Universidades",
+        prizes: [
+            { place: "Primer Lugar", medal: "1", amount: "$250" },
+            { place: "Segundo Lugar", medal: "2", amount: "$150" },
+            { place: "Tercer Lugar", medal: "3", amount: "$100" },
+        ],
+    },
+    {
+        name: "Colegios",
+        prizes: [
+            { place: "Primer Lugar", medal: "1", amount: "$150" },
+            { place: "Segundo Lugar", medal: "2", amount: "$100" },
+            { place: "Tercer Lugar", medal: "3", amount: "$50" },
+        ],
+    },
+];
 ---
 
 <BaseLayout
@@ -12,169 +31,400 @@ export const prerender = true;
     noindex={pageMetadata.phases.noindex}
 >
     <main class="w-full flex-1 bg-csp-background text-csp-black">
-        
-        <section class="relative mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 items-stretch overflow-hidden">
-            
-            <div class="absolute -left-20 top-10 h-72 w-72 rounded-full bg-csp-primary/5 blur-3xl -z-10"></div>
-
-            <div class="order-2 lg:order-1 lg:col-span-7 flex flex-col justify-center py-16 lg:py-24 lg:pr-12 relative z-10">
-                <h1 class="font-display text-[2.5rem] md:text-5xl lg:text-6xl font-bold leading-[1.1] text-csp-black mb-8">
-                    Premios y reconocimientos
-                </h1>
-                
-                <div class="inline-flex items-start gap-4 bg-[#f4f5f8] border-l-4 border-csp-primary p-5 lg:p-6 rounded-r-2xl max-w-lg shadow-sm">
-                    <div class="bg-csp-primary/10 p-3 rounded-xl shrink-0">
-                        <svg class="w-6 h-6 text-csp-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="flex flex-col gap-1">
-                        <p class="font-display font-bold text-csp-black text-xl lg:text-2xl">Por anunciar</p>
-                        <p class="text-[0.95rem] text-black/60 font-inter leading-relaxed">
-                            Estamos preparando sorpresas increíbles para los equipos ganadores de ambas categorías. ¡Mantente atento a nuestras redes!
-                        </p>
-                    </div>
+        <section class="relative w-full overflow-hidden bg-csp-primary">
+            <div
+                class="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-stretch px-4 sm:px-6 lg:grid-cols-12 lg:px-8"
+            >
+                <div
+                    class="absolute -left-20 top-10 h-72 w-72 rounded-full bg-csp-primary/5 blur-3xl -z-10"
+                >
                 </div>
 
+                <div
+                    class="order-2 lg:order-1 lg:col-span-7 flex flex-col justify-center py-16 lg:py-24 lg:pr-12 relative z-10"
+                >
+                    <h1
+                        class="font-display text-[2.5rem] md:text-5xl lg:text-6xl font-bold leading-[1.1] text-csp-white mb-8"
+                    >
+                        Premios y reconocimientos
+                    </h1>
+                </div>
+
+                <div
+                    class="order-1 lg:order-2 lg:col-span-5 relative min-h-87.5 lg:min-h-full w-auto -mx-4 sm:-mx-6 lg:mx-0"
+                >
+                    <img
+                        src="/registerPhotos/premiacion.png"
+                        alt="Personas trabajando"
+                        class="absolute inset-0 w-full h-full object-cover object-left lg:object-left foto-premios"
+                    />
+                </div>
             </div>
-            
-            <div class="order-1 lg:order-2 lg:col-span-5 relative min-h-[350px] lg:min-h-full w-auto -mx-4 sm:-mx-6 lg:mx-0">
-                <img 
-                    src="/registerPhotos/premiacion.png" 
-                    alt="Personas trabajando" 
-                    class="absolute inset-0 w-full h-full object-cover object-left lg:object-left foto-premios" 
-                />
-            </div>
-            
         </section>
-        
-        <div class="w-full flex flex-col">
-            
-            <section class="relative w-full bg-[#f4f5f8] pt-24 pb-8 lg:pb-12 overflow-hidden">
-                
-                <div class="absolute top-0 left-0 z-0 pointer-events-none">
-                    <div class="w-20 md:w-48 lg:w-64 h-32 md:h-64 lg:h-80 bg-csp-primary rounded-br-[100%]"></div>
-                    <div class="absolute top-20 md:top-44 left-0 w-6 md:w-10 h-12 md:h-20 bg-[#0BAA9F] rounded-r-full border-t-[8px] md:border-t-[12px] border-b-[8px] md:border-b-[12px] border-[#f4f5f8]"></div>
+
+        <section class="w-full bg-white py-14 md:py-20">
+            <div class="mx-auto w-full max-w-5xl px-4">
+                <div class="space-y-12">
+                    {
+                        prizeCategories.map(({ name, prizes }) => (
+                            <div>
+                                <h2 class="font-display text-2xl font-bold text-csp-black md:text-3xl">
+                                    {name}
+                                </h2>
+                                <div class="mt-5 grid gap-4 md:grid-cols-3">
+                                    {prizes.map(({ place, medal, amount }) => (
+                                        <article class="flex items-center gap-4 rounded-2xl border border-gray-100 bg-[#f4f5f8] p-4 shadow-sm">
+                                            <div class="shrink-0 rounded-xl bg-csp-primary/10 p-3 text-csp-primary">
+                                                <svg
+                                                    width="32"
+                                                    height="32"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="1.8"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    aria-hidden="true"
+                                                >
+                                                    <path d="m8 3 4 5 4-5" />
+                                                    <path d="m7 3 5 5 5-5" />
+                                                    <circle
+                                                        cx="12"
+                                                        cy="15"
+                                                        r="5.5"
+                                                    />
+                                                    <text
+                                                        x="12"
+                                                        y="17.5"
+                                                        text-anchor="middle"
+                                                        fill="currentColor"
+                                                        stroke="none"
+                                                        font-size="7"
+                                                        font-weight="700"
+                                                    >
+                                                        {medal}
+                                                    </text>
+                                                </svg>
+                                            </div>
+                                            <div class="flex flex-col">
+                                                <span class="mb-0.5 text-[0.7rem] font-bold uppercase tracking-widest text-csp-primary">
+                                                    {place}
+                                                </span>
+                                                <span class="font-display text-xl font-bold text-csp-black">
+                                                    {amount}
+                                                </span>
+                                            </div>
+                                        </article>
+                                    ))}
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
-                <div class="phases-right-blob absolute top-0 right-0 z-0 pointer-events-none flex justify-end transform scale-50 origin-top-right lg:scale-100">
-                    <div class="absolute top-10 right-8 w-16 h-16 bg-csp-primary rounded-tl-full opacity-80"></div>
-                    <div class="mt-20 w-32 h-64 border-[16px] border-csp-primary/20 rounded-l-full translate-x-12"></div>
-                    <div class="absolute top-36 right-0 w-16 h-32 bg-csp-primary rounded-l-full"></div>
+            </div>
+        </section>
+
+        <div class="w-full flex flex-col">
+            <section
+                class="relative w-full bg-[#f4f5f8] pt-24 pb-8 lg:pb-12 overflow-hidden"
+            >
+                <div class="absolute top-0 left-0 z-0 pointer-events-none">
+                    <div
+                        class="w-20 md:w-48 lg:w-64 h-32 md:h-64 lg:h-80 bg-csp-primary rounded-br-[100%]"
+                    >
+                    </div>
+                    <div
+                        class="absolute top-20 md:top-44 left-0 w-6 md:w-10 h-12 md:h-20 bg-[#0BAA9F] rounded-r-full border-t-8 md:border-t-12 border-b-8 md:border-b-12 border-[#f4f5f8]"
+                    >
+                    </div>
+                </div>
+                <div
+                    class="phases-right-blob absolute top-0 right-0 z-0 pointer-events-none flex justify-end transform scale-50 origin-top-right lg:scale-100"
+                >
+                    <div
+                        class="absolute top-10 right-8 w-16 h-16 bg-csp-primary rounded-tl-full opacity-80"
+                    >
+                    </div>
+                    <div
+                        class="mt-20 w-32 h-64 border-16 border-csp-primary/20 rounded-l-full translate-x-12"
+                    >
+                    </div>
+                    <div
+                        class="absolute top-36 right-0 w-16 h-32 bg-csp-primary rounded-l-full"
+                    >
+                    </div>
                 </div>
 
                 <div class="relative z-10 mx-auto w-full max-w-5xl px-4">
-                    
                     <div class="text-center mb-16 relative z-20">
-                        <h2 class="font-display text-4xl md:text-5xl font-bold mb-3 text-csp-black">
+                        <h2
+                            class="font-display text-4xl md:text-5xl font-bold mb-3 text-csp-black"
+                        >
                             Fases de la competencia
                         </h2>
                         <p class="text-[1.05rem] text-[#6b629b] font-inter">
-                            La Copa Salvadoreña de Programación consta de dos fases:
+                            La Copa Salvadoreña de Programación consta de dos
+                            fases:
                         </p>
                     </div>
 
-                    <article class="bg-white rounded-2xl overflow-hidden shadow-[0_15px_40px_-15px_rgba(0,0,0,0.15)] grid grid-cols-1 lg:grid-cols-2 w-full relative">
-                        
-                        <div class="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-                            <h3 class="font-display text-[1.75rem] md:text-3xl font-bold mb-2 text-csp-black">Fase en línea</h3>
-                            <h4 class="font-display text-xl md:text-xl font-bold mb-6 text-[#6b629b]">Lugar: Plataforma virtual</h4>
-                            
-                            <div class="space-y-4 mb-8 text-[0.95rem] text-black/80 font-inter leading-relaxed">
-                                <p>En esta fase, los equipos competirán por un puesto en la fase presencial resolviendo 6 problemas de forma remota.</p>
-                                <p>Los mejores equipos avanzarán a la fase presencial. Pueden participar TODOS los equipos que deseen de una misma institución. En esta fase, no hay límite de participación.</p>
+                    <article
+                        class="bg-white rounded-2xl overflow-hidden shadow-[0_15px_40px_-15px_rgba(0,0,0,0.15)] grid grid-cols-1 lg:grid-cols-2 w-full relative"
+                    >
+                        <div
+                            class="p-8 md:p-10 lg:p-12 flex flex-col justify-center"
+                        >
+                            <h3
+                                class="font-display text-[1.75rem] md:text-3xl font-bold mb-2 text-csp-black"
+                            >
+                                Fase en línea
+                            </h3>
+                            <h4
+                                class="font-display text-xl md:text-xl font-bold mb-6 text-[#6b629b]"
+                            >
+                                Lugar: Plataforma virtual
+                            </h4>
+
+                            <div
+                                class="space-y-4 mb-8 text-[0.95rem] text-black/80 font-inter leading-relaxed"
+                            >
+                                <p>
+                                    En esta fase, los equipos competirán por un
+                                    puesto en la fase presencial resolviendo 6
+                                    problemas de forma remota.
+                                </p>
+                                <p>
+                                    Los mejores equipos avanzarán a la fase
+                                    presencial. Pueden participar TODOS los
+                                    equipos que deseen de una misma institución.
+                                    En esta fase, no hay límite de
+                                    participación.
+                                </p>
                             </div>
 
-                            <div class="flex flex-col sm:flex-row gap-4 font-poppins mt-auto">
-                                
-                                <div class="flex-1 flex items-center gap-4 bg-[#f4f5f8] p-4 rounded-2xl border border-gray-100">
-                                    <div class="bg-csp-primary/10 p-3 rounded-xl text-csp-primary shrink-0">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                                            <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"></path>
+                            <div
+                                class="flex flex-col sm:flex-row gap-4 font-poppins mt-auto"
+                            >
+                                <div
+                                    class="flex-1 flex items-center gap-4 bg-[#f4f5f8] p-4 rounded-2xl border border-gray-100"
+                                >
+                                    <div
+                                        class="bg-csp-primary/10 p-3 rounded-xl text-csp-primary shrink-0"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <rect
+                                                x="3"
+                                                y="4"
+                                                width="18"
+                                                height="18"
+                                                rx="2"
+                                                ry="2"></rect>
+                                            <line x1="3" y1="10" x2="21" y2="10"
+                                            ></line>
+                                            <path
+                                                d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"
+                                            ></path>
                                         </svg>
                                     </div>
                                     <div class="flex flex-col">
-                                        <span class="text-[0.7rem] font-bold text-csp-primary uppercase tracking-widest mb-0.5">Fecha</span>
-                                        <span class="font-bold text-csp-black text-[0.95rem]">1 y 2 de agosto del 2026</span>
+                                        <span
+                                            class="text-[0.7rem] font-bold text-csp-primary uppercase tracking-widest mb-0.5"
+                                            >Fecha</span
+                                        >
+                                        <span
+                                            class="font-bold text-csp-black text-[0.95rem]"
+                                            >1 y 2 de agosto del 2026</span
+                                        >
                                     </div>
                                 </div>
 
-                                <div class="flex-1 flex items-center gap-4 bg-[#f4f5f8] p-4 rounded-2xl border border-gray-100">
-                                    <div class="bg-csp-primary/10 p-3 rounded-xl text-csp-primary shrink-0">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                <div
+                                    class="flex-1 flex items-center gap-4 bg-[#f4f5f8] p-4 rounded-2xl border border-gray-100"
+                                >
+                                    <div
+                                        class="bg-csp-primary/10 p-3 rounded-xl text-csp-primary shrink-0"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <circle cx="12" cy="12" r="10"
+                                            ></circle>
+                                            <polyline points="12 6 12 12 16 14"
+                                            ></polyline>
                                         </svg>
                                     </div>
                                     <div class="flex flex-col">
-                                        <span class="text-[0.7rem] font-bold text-csp-primary uppercase tracking-widest mb-0.5">Horario</span>
-                                        <span class="font-bold text-csp-black text-[0.95rem]">8:00 am del sábado - 11:59 pm del domingo</span>
+                                        <span
+                                            class="text-[0.7rem] font-bold text-csp-primary uppercase tracking-widest mb-0.5"
+                                            >Horario</span
+                                        >
+                                        <span
+                                            class="font-bold text-csp-black text-[0.95rem]"
+                                            >8:00 am del sábado - 11:59 pm del
+                                            domingo</span
+                                        >
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
-                        <div class="relative min-h-[350px] lg:min-h-full">
-                            <img src="/index/colegios.webp" alt="Equipo programando en línea" class="absolute inset-0 w-full h-full object-cover object-center" />
+                        <div class="relative min-h-87.5 lg:min-h-full">
+                            <img
+                                src="/index/colegios.webp"
+                                alt="Equipo programando en línea"
+                                class="absolute inset-0 w-full h-full object-cover object-center"
+                            />
                         </div>
                     </article>
-
                 </div>
             </section>
 
-            <section class="relative w-full bg-csp-primary pt-8 lg:pt-12 pb-16 lg:pb-24 overflow-hidden">
+            <section
+                class="relative w-full bg-csp-primary pt-8 lg:pt-12 pb-16 lg:pb-24 overflow-hidden"
+            >
                 <div class="relative z-10 mx-auto w-full max-w-5xl px-4">
-                    
-                    <article class="bg-white rounded-2xl overflow-hidden shadow-[0_15px_40px_-15px_rgba(0,0,0,0.5)] grid grid-cols-1 lg:grid-cols-2 w-full relative">
-                        
-                        <div class="relative min-h-[350px] lg:min-h-full order-last lg:order-first">
-                            <img src="/index/universidades.webp" alt="Laboratorios ESEN" class="absolute inset-0 w-full h-full object-cover object-center" />
+                    <article
+                        class="bg-white rounded-2xl overflow-hidden shadow-[0_15px_40px_-15px_rgba(0,0,0,0.5)] grid grid-cols-1 lg:grid-cols-2 w-full relative"
+                    >
+                        <div
+                            class="relative min-h-87.5 lg:min-h-full order-last lg:order-first"
+                        >
+                            <img
+                                src="/index/universidades.webp"
+                                alt="Laboratorios ESEN"
+                                class="absolute inset-0 w-full h-full object-cover object-center"
+                            />
                         </div>
-                        
-                        <div class="p-8 md:p-10 lg:p-12 flex flex-col justify-center">
-                            <h3 class="font-display text-[1.75rem] md:text-3xl font-bold mb-2 text-csp-black">Fases presenciales</h3>
-                            <h4 class="font-display text-xl md:text-xl font-bold mb-6 text-[#6b629b]">Lugar: Campus ESEN</h4>
-                            
-                            <div class="space-y-4 mb-8 text-[0.95rem] text-black/80 font-inter leading-relaxed">
-                                <p>Los equipos resolverán 6 problemas de programación en un tiempo máximo de 4 horas directamente desde los laboratorios de informática de la ESEN.</p>
+
+                        <div
+                            class="p-8 md:p-10 lg:p-12 flex flex-col justify-center"
+                        >
+                            <h3
+                                class="font-display text-[1.75rem] md:text-3xl font-bold mb-2 text-csp-black"
+                            >
+                                Fases presenciales
+                            </h3>
+                            <h4
+                                class="font-display text-xl md:text-xl font-bold mb-6 text-[#6b629b]"
+                            >
+                                Lugar: Campus ESEN
+                            </h4>
+
+                            <div
+                                class="space-y-4 mb-8 text-[0.95rem] text-black/80 font-inter leading-relaxed"
+                            >
+                                <p>
+                                    Los equipos resolverán 6 problemas de
+                                    programación en un tiempo máximo de 4 horas
+                                    directamente desde los laboratorios de
+                                    informática de la ESEN.
+                                </p>
                             </div>
 
-                            <div class="flex flex-col gap-4 font-poppins mt-auto">
-                                <div class="w-full flex items-center gap-4 bg-[#f4f5f8] p-4 rounded-2xl border border-gray-100">
-                                    <div class="bg-csp-primary/10 p-3 rounded-xl text-csp-primary shrink-0 self-start sm:self-center">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                                            <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"></path>
+                            <div
+                                class="flex flex-col gap-4 font-poppins mt-auto"
+                            >
+                                <div
+                                    class="w-full flex items-center gap-4 bg-[#f4f5f8] p-4 rounded-2xl border border-gray-100"
+                                >
+                                    <div
+                                        class="bg-csp-primary/10 p-3 rounded-xl text-csp-primary shrink-0 self-start sm:self-center"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <rect
+                                                x="3"
+                                                y="4"
+                                                width="18"
+                                                height="18"
+                                                rx="2"
+                                                ry="2"></rect>
+                                            <line x1="3" y1="10" x2="21" y2="10"
+                                            ></line>
+                                            <path
+                                                d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"
+                                            ></path>
                                         </svg>
                                     </div>
                                     <div class="flex flex-col w-full">
-                                        <span class="text-[0.7rem] font-bold text-csp-primary uppercase tracking-widest mb-1">Fechas por categoría</span>
-                                        <div class="flex flex-col sm:flex-row gap-1 sm:gap-6">
-                                            <span class="font-bold text-csp-black text-[0.95rem]">Colegios: 15 de agosto</span>
-                                            <span class="font-bold text-csp-black text-[0.95rem]">Universidades: 5 de septiembre</span>
+                                        <span
+                                            class="text-[0.7rem] font-bold text-csp-primary uppercase tracking-widest mb-1"
+                                            >Fechas por categoría</span
+                                        >
+                                        <div
+                                            class="flex flex-col sm:flex-row gap-1 sm:gap-6"
+                                        >
+                                            <span
+                                                class="font-bold text-csp-black text-[0.95rem]"
+                                                >Colegios: 15 de agosto</span
+                                            >
+                                            <span
+                                                class="font-bold text-csp-black text-[0.95rem]"
+                                                >Universidades: 5 de septiembre</span
+                                            >
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex-1 flex items-center gap-4 bg-[#f4f5f8] p-4 rounded-2xl border border-gray-100">
-                                    <div class="bg-csp-primary/10 p-3 rounded-xl text-csp-primary shrink-0">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                <div
+                                    class="flex-1 flex items-center gap-4 bg-[#f4f5f8] p-4 rounded-2xl border border-gray-100"
+                                >
+                                    <div
+                                        class="bg-csp-primary/10 p-3 rounded-xl text-csp-primary shrink-0"
+                                    >
+                                        <svg
+                                            width="24"
+                                            height="24"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <circle cx="12" cy="12" r="10"
+                                            ></circle>
+                                            <polyline points="12 6 12 12 16 14"
+                                            ></polyline>
                                         </svg>
                                     </div>
                                     <div class="flex flex-col">
-                                        <span class="text-[0.7rem] font-bold text-csp-primary uppercase tracking-widest mb-0.5">Horario</span>
-                                        <span class="font-bold text-csp-black text-[0.95rem]">8:00 am</span>
+                                        <span
+                                            class="text-[0.7rem] font-bold text-csp-primary uppercase tracking-widest mb-0.5"
+                                            >Horario</span
+                                        >
+                                        <span
+                                            class="font-bold text-csp-black text-[0.95rem]"
+                                            >8:00 am</span
+                                        >
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </article>
-
                 </div>
             </section>
         </div>
@@ -182,21 +432,31 @@ export const prerender = true;
 
     <style>
         .font-poppins {
-            font-family: 'Poppins', sans-serif;
+            font-family: "Poppins", sans-serif;
         }
         .font-inter {
-            font-family: 'Inter', sans-serif;
+            font-family: "Inter", sans-serif;
         }
         .font-display {
-            font-family: var(--font-display), 'Poppins', system-ui, sans-serif;
+            font-family: var(--font-display), "Poppins", system-ui, sans-serif;
         }
-        
+
         @media (min-width: 1024px) {
             .foto-premios {
                 -o-object-position: 15% center;
                 object-position: 15% center;
-                -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 10%, black 50%);
-                mask-image: linear-gradient(to right, transparent 0%, transparent 10%, black 50%);
+                -webkit-mask-image: linear-gradient(
+                    to right,
+                    transparent 0%,
+                    transparent 10%,
+                    black 50%
+                );
+                mask-image: linear-gradient(
+                    to right,
+                    transparent 0%,
+                    transparent 10%,
+                    black 50%
+                );
             }
         }
 

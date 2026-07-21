@@ -5,7 +5,7 @@ import type { RegistrationCategory } from "@/lib/types";
 import { RegistrationForm } from "./RegistrationForm";
 
 function parseCategory(value: string | null): RegistrationCategory | null {
-  if (value === "colegios" || value === "universidades") {
+  if (value === "colegios" || value === "universidades" || value === "ade") {
     return value;
   }
 

@@ -11,7 +11,7 @@ export type RegistrationStepKey =
 export function getStepKeysByCategory(
   category: RegistrationFormData["category"],
 ): RegistrationStepKey[] {
-  if (category === "universidades") {
+  if (category === "universidades" || category === "ade") {
     return ["team", "members", "confirmation"];
   }
   return ["team", "members", "responsible", "confirmation"];
@@ -86,7 +86,7 @@ export function validateTeamStep(formData: RegistrationFormData): FieldErrors {
   const errors: FieldErrors = {};
 
   if (!formData.teamName.trim()) errors.teamName = "Ingresa el nombre del equipo.";
-  if (!formData.institution.trim()) {
+  if (formData.category !== "ade" && !formData.institution.trim()) {
     errors.institution = "Ingresa el nombre de la institución.";
   }
   if (!formData.discoverySource) errors.discoverySource = "Selecciona cómo conocieron la Copa.";
@@ -126,7 +126,7 @@ export function validateMembersStep(formData: RegistrationFormData): FieldErrors
 }
 
 export function validateResponsibleStep(formData: RegistrationFormData): FieldErrors {
-  if (formData.category === "universidades") {
+  if (formData.category === "universidades" || formData.category === "ade") {
     return {};
   }
 
@@ -171,7 +171,7 @@ export function validateConfirmationStep(formData: RegistrationFormData): FieldE
   if (!formData.privacyAccepted) {
     errors.privacyAccepted = "Debes aceptar el tratamiento de datos personales.";
   }
-  if (formData.category === "universidades" && !formData.universityImageConsentAccepted) {
+  if ((formData.category === "universidades" || formData.category === "ade") && !formData.universityImageConsentAccepted) {
     errors.universityImageConsentAccepted = "Debes aceptar el uso de imagen.";
   }
 

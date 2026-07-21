@@ -184,16 +184,10 @@ export const prerender = true;
                                 },
                             ].map((s) => (
                                 <li class="rg-step">
-                                    <span class="rg-step-number">
-                                        {s.n}
-                                    </span>
+                                    <span class="rg-step-number">{s.n}</span>
                                     <div class="rg-step-copy">
-                                        <p class="rg-step-title">
-                                            {s.t}
-                                        </p>
-                                        <p class="rg-step-desc">
-                                            {s.d}
-                                        </p>
+                                        <p class="rg-step-title">{s.t}</p>
+                                        <p class="rg-step-desc">{s.d}</p>
                                     </div>
                                 </li>
                             ))
@@ -369,6 +363,21 @@ export const prerender = true;
                         Para equipos de educación superior.
                     </p>
                 </a>
+                <a
+                    href="/inscripcion/registro?categoria=ade"
+                    class="rg-cat-card"
+                >
+                    <p
+                        style="margin:0 0 .4rem;font-family:'Poppins',sans-serif;font-size:1.25rem;font-weight:600;color:#3A2E89;"
+                    >
+                        Categoría AdE
+                    </p>
+                    <p
+                        style="font-family:'Inter',sans-serif;margin:0;font-size:.875rem;color:rgba(1,1,1,.6);"
+                    >
+                        Para participantes que no estudian en una institución.
+                    </p>
+                </a>
             </div>
         </div>
     </section>
@@ -491,7 +500,7 @@ export const prerender = true;
     /* ── inscripcion ── */
     .rg-inscripcion-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
     }
     .rg-cat-card {

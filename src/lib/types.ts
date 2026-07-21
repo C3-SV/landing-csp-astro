@@ -1,4 +1,4 @@
-export type RegistrationCategory = "colegios" | "universidades";
+export type RegistrationCategory = "colegios" | "universidades" | "ade";
 
 export type RegistrationStatus =
   | "recibida"
@@ -18,7 +18,7 @@ export type DiscoverySource =
   | "institucion"
   | "otro";
 
-export type UploadedFilePurpose = "student-id" | "image-consent" | "other";
+export type UploadedFilePurpose = "student-id" | "identity-document" | "image-consent" | "other";
 
 export type UploadedFileMetadata = {
   fileName: string;

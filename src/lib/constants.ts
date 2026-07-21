@@ -66,6 +66,11 @@ export const CATEGORY_OPTIONS: Array<{
   description: string;
 }> = [
   {
+    value: "ade",
+    label: "Categoría AdE",
+    description: "Para participantes sin necesidad de afiliación estudiantil.",
+  },
+  {
     value: "colegios",
     label: "Colegios",
     description: "Para equipos de educación media.",
