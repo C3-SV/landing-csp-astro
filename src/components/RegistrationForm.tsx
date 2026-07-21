@@ -786,7 +786,11 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
           if (member.studentIdFile && typeof member.studentIdFile === "object" && "size" in member.studentIdFile && !("fileUrl" in member.studentIdFile)) {
             // This is a File object, not yet uploaded
             const file = member.studentIdFile as any;
-            const uploadedFile = await uploadFileToUploadThing(file, "studentIdUploader");
+            const uploadedFile = await uploadFileToUploadThing(
+              file,
+              "studentIdUploader",
+              formData.category === "ade" ? "identity-document" : "student-id",
+            );
             return { ...member, studentIdFile: uploadedFile };
           }
           return member;
@@ -843,6 +847,7 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
   const uploadFileToUploadThing = async (
     file: File,
     endpoint: "studentIdUploader" | "consentUploader",
+    purpose?: UploadedFileMetadata["purpose"],
   ): Promise<UploadedFileMetadata> => {
     const [uploadedFile] = await uploadThing.uploadFiles(endpoint, { files: [file] });
 
@@ -857,7 +862,7 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
       fileUrl: uploadedFile.ufsUrl || "",
       fileKey: uploadedFile.key,
       uploadedAt: new Date().toISOString(),
-      purpose: endpoint === "studentIdUploader" ? "student-id" : "image-consent",
+      purpose: purpose ?? (endpoint === "studentIdUploader" ? "student-id" : "image-consent"),
       provider: "uploadthing" as const,
     };
   };
@@ -895,7 +900,11 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
                 </p>
               </div>
               <Badge variant="accent">
-                {formData.category === "colegios" ? "Colegios" : "Universidades"}
+                {formData.category === "colegios"
+                  ? "Colegios"
+                  : formData.category === "universidades"
+                    ? "Universidades"
+                    : "Categoría AdE"}
               </Badge>
             </div>
 
@@ -908,6 +917,7 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
               value={formData.teamName}
             />
 
+            {formData.category !== "ade" ? (
             <TextInput
               error={visibleErrors.institution}
               id="institution"
@@ -920,6 +930,7 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
               onBlur={() => handleFieldBlur("institution")}
               value={formData.institution}
             />
+            ) : null}
 
             <SelectInput
               error={visibleErrors.discoverySource}
@@ -1168,7 +1179,7 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
                                 value={member.linkedin ?? ""}
                               />
                             </div>
-                          ) : (
+                          ) : formData.category === "colegios" ? (
                             <SelectInput
                               error={visibleErrors[`${prefix}.schoolGrade`]}
                               id={`member-${memberIndex}-schoolGrade`}
@@ -1179,7 +1190,7 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
                               placeholder="Selecciona el grado o año"
                               value={member.schoolGrade ?? ""}
                             />
-                          )}
+                          ) : null}
 
                           <TextAreaInput
                             id={`member-${memberIndex}-about`}
@@ -1193,7 +1204,11 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
                           <UploadField
                             endpoint="studentIdUploader"
                             error={visibleErrors[`${prefix}.studentIdFile`]}
-                            label="Carné estudiantil o documento de estudiante *"
+                            label={
+                              formData.category === "ade"
+                                ? "Documento formal (DUI, pasaporte o licencia de conducir) *"
+                                : "Carné estudiantil o documento de estudiante *"
+                            }
                             onChange={(file) => updateMember(memberIndex, { studentIdFile: file as any })}
                             onUploadingChange={(uploading) => setUploadingState("members", uploading)}
                             value={member.studentIdFile ?? null}
@@ -1387,7 +1402,9 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
               <h2 className="font-display text-lg font-semibold text-csp-primary">Información del equipo</h2>
               <p className="text-sm"><strong>Nombre:</strong> {formData.teamName || "-"}</p>
               <p className="text-sm"><strong>Categoría:</strong> {formData.category}</p>
-              <p className="text-sm"><strong>Institución:</strong> {formData.institution || "-"}</p>
+              {formData.category !== "ade" ? (
+                <p className="text-sm"><strong>Institución:</strong> {formData.institution || "-"}</p>
+              ) : null}
               <p className="text-sm"><strong>Fuente:</strong> {formData.discoverySource || "-"}</p>
               <p className="text-sm"><strong>Descripción:</strong> {formData.teamDescription || "-"}</p>
               <p className="text-sm"><strong>Usuario de OmegaUp:</strong> {formData.teamOmegaUpUser || "-"}</p>
@@ -1409,12 +1426,14 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
                   <p><strong>Correo:</strong> {member.email || "-"}</p>
                   <p><strong>Edad:</strong> {member.age || "-"}</p>
                   <p><strong>WhatsApp:</strong> {member.whatsapp || "-"}</p>
-                  <p>
-                    <strong>{formData.category === "universidades" ? "Carrera/Año" : "Grado escolar"}:</strong>{" "}
-                    {formData.category === "universidades"
-                      ? `${member.career || "-"} / ${member.universityYear || "-"}`
-                      : member.schoolGrade || "-"}
-                  </p>
+                  {formData.category !== "ade" ? (
+                    <p>
+                      <strong>{formData.category === "universidades" ? "Carrera/Año" : "Grado escolar"}:</strong>{" "}
+                      {formData.category === "universidades"
+                        ? `${member.career || "-"} / ${member.universityYear || "-"}`
+                        : member.schoolGrade || "-"}
+                    </p>
+                  ) : null}
                   {formData.category === "universidades" ? (
                     <p><strong>LinkedIn:</strong> {member.linkedin || "-"}</p>
                   ) : null}
@@ -1503,7 +1522,7 @@ export function RegistrationForm({ category }: RegistrationFormProps) {
               </label>
               <FieldError error={visibleErrors.privacyAccepted} />
 
-              {formData.category === "universidades" ? (
+              {formData.category === "universidades" || formData.category === "ade" ? (
                 <>
                   <label className="flex items-start gap-2 text-sm">
                     <input

@@ -37,7 +37,7 @@ export function buildRegistrationEmailPayload(
     registrationId,
     teamName: formData.teamName,
     category: formData.category,
-    institution: formData.institution,
+    institution: formData.category === "ade" ? undefined : formData.institution,
     members: memberNames,
     omegaUpUsers,
     responsible:
