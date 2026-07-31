@@ -1,21 +1,68 @@
 ---
-const mainSponsors = [
-    { name: "TechyWe", logo: "/sponsors/techywe.webp" },
-    { name: "Applaudo", logo: "/sponsors/applaudo.webp" },
-    { name: "Boxful", logo: "/sponsors/boxful.webp" },
-    { name: "RSM", logo: "/sponsors/rsm.webp" },
-];
+type Sponsor = {
+    name: string;
+    logo?: string;
+    className?: string;
+    containerClass?: string;
+};
 
-const supportingSponsors = [
-    { name: "Search You", logo: "/sponsors/search-you.png" },
-    { name: "Fusades", logo: "/sponsors/fusades.webp" },
-    { name: "OSI", logo: "/sponsors/logo_osi.webp" },
-    { name: "Ravn", logo: "/sponsors/ravn.webp" },
-    { name: "Enblueprint", logo: "/sponsors/enblueprint.webp" },
-];
-
-const lowerTierSponsors = [
-    { name: "AFP Crecer", logo: "/sponsors/afp-crecer.png" },
+// Each row deliberately has five positions to preserve the approved layout
+// while the remaining logo files are received.
+const sponsorRows: { size: "featured" | "medium" | "lower"; sponsors: Sponsor[] }[] = [
+    {
+        size: "featured",
+        sponsors: [
+            { name: "RSM", logo: "/sponsors/rsm.webp" },
+            { name: "TechyWe", logo: "/sponsors/techywe.webp" },
+            { name: "Boxful", logo: "/sponsors/boxful.webp" },
+            { name: "Applaudo", logo: "/sponsors/applaudo.webp" },
+            {
+                name: "Datalysis",
+                logo: "/sponsors/datalysis.jpeg",
+                className: "sponsor-logo--datalysis",
+            },
+        ],
+    },
+    {
+        size: "medium",
+        sponsors: [
+            {
+                name: "Simplexo",
+                logo: "/sponsors/simplexo.svg",
+                className: "sponsor-logo--simplexo",
+            },
+            { name: "FUSADES", logo: "/sponsors/fusades.webp" },
+            { name: "Search You", logo: "/sponsors/search-you.png" },
+            { name: "Enblueprint", logo: "/sponsors/enblueprint.webp" },
+            { name: "RAVN", logo: "/sponsors/ravn.webp" },
+        ],
+    },
+    {
+        size: "lower",
+        sponsors: [
+            {
+                name: "omegaUp",
+                logo: "/sponsors/omegaup.png",
+                className: "sponsor-logo--omegaup",
+            },
+            { name: "OSI", logo: "/sponsors/logo_osi.webp" },
+            {
+                name: "Crecer",
+                logo: "/sponsors/afp-crecer.png",
+                className: "sponsor-logo--crecer",
+            },
+            {
+                name: "Creativa Studios",
+                logo: "/sponsors/creativa-studios.jpg",
+                className: "sponsor-logo--creativa",
+            },
+            {
+                name: "Campus Life",
+                logo: "/sponsors/campus-life.png",
+                containerClass: "sponsor--campus",
+            },
+        ],
+    },
 ];
 ---
 
@@ -29,59 +76,83 @@ const lowerTierSponsors = [
             </h2>
         </div>
 
-        <div class="space-y-10">
-            <div
-                class="grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-8 lg:grid-cols-4"
-            >
-                {
-                    mainSponsors.map((sponsor) => (
-                        <div class="flex h-28 w-full max-w-60 items-center justify-center rounded-lg px-4 py-4 transition-transform duration-200 ease-out hover:scale-105 md:h-32 md:max-w-64">
-                            <img
-                                src={sponsor.logo}
-                                alt={`Logo de ${sponsor.name}`}
-                                class="max-h-24 max-w-full object-contain md:max-h-28"
-                                loading="lazy"
-                            />
-                        </div>
-                    ))
-                }
-            </div>
-
-            <div class="mx-auto max-w-5xl">
-                <div
-                    class="grid grid-cols-2 items-center justify-items-center gap-x-6 gap-y-6 lg:grid-cols-5"
-                >
-                    {
-                        supportingSponsors.map((sponsor) => (
-                            <div class="flex h-24 w-full max-w-44 items-center justify-center rounded-lg px-4 py-3 opacity-80 transition-transform duration-200 ease-out hover:scale-105 md:max-w-48">
-                                <img
-                                    src={sponsor.logo}
-                                    alt={`Logo de ${sponsor.name}`}
-                                    class="max-h-[2.9rem] max-w-full object-contain md:max-h-[3.25rem]"
-                                    loading="lazy"
-                                />
+        <div class="space-y-3.5 md:space-y-4">
+            {
+                sponsorRows.map(({ size, sponsors }, index) => (
+                    <div
+                        class:list={[
+                            "grid grid-cols-2 items-center gap-x-3 gap-y-2 sm:grid-cols-5 sm:gap-x-5",
+                            index === 2 && "mt-2 md:mt-3",
+                        ]}
+                    >
+                        {sponsors.map((sponsor) => (
+                            <div
+                                class:list={[
+                                    "flex w-full items-center justify-center",
+                                    size === "featured"
+                                        ? "h-20 sm:h-24 md:h-32"
+                                        : size === "medium"
+                                          ? "h-14 sm:h-[4.5rem] md:h-20"
+                                          : "h-12 sm:h-14 md:h-16",
+                                    sponsor.containerClass,
+                                ]}
+                            >
+                                {sponsor.logo ? (
+                                    <img
+                                        src={sponsor.logo}
+                                        alt={`Logo de ${sponsor.name}`}
+                                        class:list={[
+                                            "max-w-full object-contain",
+                                            size === "featured"
+                                                ? "max-h-16 sm:max-h-20 md:max-h-24"
+                                                : size === "medium"
+                                                  ? "max-h-12 sm:max-h-[3.625rem] md:max-h-[4.25rem]"
+                                                  : "max-h-8 sm:max-h-10 md:max-h-[2.75rem]",
+                                            sponsor.className,
+                                        ]}
+                                        loading="lazy"
+                                    />
+                                ) : (
+                                    <span class="sr-only">Espacio reservado para {sponsor.name}</span>
+                                )}
                             </div>
-                        ))
-                    }
-                </div>
-            </div>
-
-            <div class="mx-auto max-w-3xl">
-                <div class="grid grid-cols-1 items-center justify-items-center">
-                    {
-                        lowerTierSponsors.map((sponsor) => (
-                            <div class="flex h-20 w-full max-w-56 items-center justify-center rounded-lg px-4 py-3 opacity-85 transition-transform duration-200 ease-out hover:scale-105 md:h-24 md:max-w-60">
-                                <img
-                                    src={sponsor.logo}
-                                    alt={`Logo de ${sponsor.name}`}
-                                    class="max-h-[1.7rem] max-w-full object-contain md:max-h-[1.9rem]"
-                                    loading="lazy"
-                                />
-                            </div>
-                        ))
-                    }
-                </div>
-            </div>
+                        ))}
+                    </div>
+                ))
+            }
         </div>
     </div>
 </section>
+
+<style>
+    /* Convert the supplied black-matte JPG into a dark mark on the original
+       light page background, without exposing a rectangular image backdrop. */
+    .sponsor-logo--datalysis {
+        filter: invert(1) grayscale(1);
+        mix-blend-mode: multiply;
+    }
+
+    .sponsor-logo--creativa {
+        mix-blend-mode: multiply;
+        transform: scale(2.9);
+    }
+
+    /* This file has a very generous Illustrator canvas around the mark. */
+    .sponsor-logo--simplexo {
+        transform: scale(2.5);
+    }
+
+    .sponsor-logo--omegaup {
+        max-height: 2rem;
+    }
+
+    .sponsor-logo--crecer {
+        max-height: 2.2rem;
+    }
+
+    .sponsor--campus {
+        border-radius: 0.5rem;
+        background: #3b2d8e;
+        padding: 0.375rem 0.625rem;
+    }
+</style>
