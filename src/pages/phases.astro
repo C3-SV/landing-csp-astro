@@ -1,8 +1,62 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Cronograma, {
+    type CronogramaItem,
+} from "../components/Cronograma.astro";
 import { pageMetadata } from "../lib/site";
 
 export const prerender = true;
+
+const cronogramaItems: CronogramaItem[] = [
+    {
+        timeStart: "7:15 a.m.",
+        timeEnd: "8:00 a.m.",
+        title: "Registro de participantes",
+        icon: "clipboard",
+    },
+    {
+        timeStart: "8:00 a.m.",
+        timeEnd: "9:00 a.m.",
+        title: "Bienvenida e indicaciones",
+        icon: "megaphone",
+    },
+    {
+        timeStart: "8:00 a.m.",
+        timeEnd: "12:00 m.",
+        title: "Competencia de programación",
+        icon: "code",
+    },
+    {
+        timeStart: "12:00 m.",
+        timeEnd: "1:00 p.m.",
+        title: "Almuerzo y espacio de convivencia",
+        icon: "utensils",
+    },
+    {
+        timeStart: "1:15 p.m.",
+        timeEnd: "1:45 p.m.",
+        title: "Charla presentada por TechyWe",
+        icon: "presentation",
+    },
+    {
+        timeStart: "1:45 p.m.",
+        timeEnd: "2:15 p.m.",
+        title: "Espacio de networking",
+        icon: "users",
+    },
+    {
+        timeStart: "2:15 p.m.",
+        timeEnd: "2:45 p.m.",
+        title: "Charla presentada por Ghost",
+        icon: "presentation",
+    },
+    {
+        timeStart: "3:00 p.m.",
+        timeEnd: "3:30 p.m.",
+        title: "Premiación y clausura",
+        icon: "trophy",
+    },
+];
 
 const prizeCategories = [
     {
@@ -428,6 +482,24 @@ const prizeCategories = [
                 </div>
             </section>
         </div>
+
+        <section class="w-full bg-[#f4f5f8] py-14 md:py-20">
+            <div class="mx-auto w-full max-w-3xl px-8">
+                <div class="text-center mb-12 md:mb-16">
+                    <h2
+                        class="font-display text-4xl md:text-5xl font-bold text-csp-black mb-3"
+                    >
+                        Cronograma - Fase presencial de colegios
+                    </h2>
+                    <p class="text-[1.05rem] text-[#6b629b] font-inter">
+                        Así se vivirá el día de la competencia, de principio a
+                        fin.
+                    </p>
+                </div>
+
+                <Cronograma items={cronogramaItems} />
+            </div>
+        </section>
     </main>
 
     <style>

@@ -17,7 +17,6 @@
     "@astrojs/react": "^6.0.2",
     "@astrojs/sitemap": "^3.7.3",
     "@astrojs/vercel": "^11.0.4",
-    "@uploadthing/react": "^7.3.3",
     "@vercel/analytics": "^2.0.1",
     "astro": "^7.1.6"
   },
@@ -26,12 +25,9 @@
     "@tailwindcss/vite": "^4.3.0",
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.6",
-    "firebase": "^12.8.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "sweetalert2": "^11.26.1",
     "tailwindcss": "^4",
-    "typescript": "^5.9.3",
-    "uploadthing": "^7.7.4"
+    "typescript": "^5.9.3"
   }
 }

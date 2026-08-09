@@ -4,8 +4,6 @@ const navLinks = [
     { label: "Fases", href: "/phases" },
     { label: "Reglamento", href: "/rules" },
 ];
-
-const cta = { label: "¡Inscríbete ya!", href: "/register" };
 ---
 
 <!-- DesktopNav -->
@@ -25,25 +23,16 @@ const cta = { label: "¡Inscríbete ya!", href: "/register" };
             </a>
 
             <div class="flex items-center gap-12">
-                <div class="flex items-center gap-12">
-                    {
-                        navLinks.map((link) => (
-                            <a
-                                href={link.href}
-                                class="text-sm font-medium text-csp-white/85 transition hover:text-csp-white"
-                            >
-                                {link.label}
-                            </a>
-                        ))
-                    }
-                </div>
-                <a
-                    href={cta.href}
-                    class="inline-flex items-center gap-2 rounded-lg border border-csp-white/70 px-4 py-2 text-sm font-semibold text-csp-white transition hover:bg-csp-white/10"
-                >
-                    <span>{cta.label}</span>
-                    <span aria-hidden="true">→</span>
-                </a>
+                {
+                    navLinks.map((link) => (
+                        <a
+                            href={link.href}
+                            class="text-sm font-medium text-csp-white/85 transition hover:text-csp-white"
+                        >
+                            {link.label}
+                        </a>
+                    ))
+                }
             </div>
         </div>
     </div>
@@ -114,14 +103,6 @@ const cta = { label: "¡Inscríbete ya!", href: "/register" };
                         </a>
                     ))
                 }
-                <a
-                    href={cta.href}
-                    class="mt-2 inline-flex items-center justify-center gap-2 rounded-lg border border-csp-white/70 px-4 py-3 text-sm font-semibold text-csp-white transition hover:bg-csp-white/10"
-                    data-nav-link
-                >
-                    <span>{cta.label}</span>
-                    <span aria-hidden="true">→</span>
-                </a>
             </div>
         </div>
     </div>

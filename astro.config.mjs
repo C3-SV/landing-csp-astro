@@ -12,19 +12,12 @@ export default defineConfig({
     sitemap({
       filter: (page) => {
         const pathname = new URL(page).pathname;
-        return ![
-          "/phases/",
-          "/inscripcion/registro/",
-          "/inscripcion/exito/",
-        ].includes(pathname);
+        return pathname !== "/phases/";
       },
     }),
   ],
   output: "server",
   vite: {
-    optimizeDeps: {
-      include: ["uploadthing/client"],
-    },
     plugins: [tailwindcss()],
   },
   publicDir: "./public",

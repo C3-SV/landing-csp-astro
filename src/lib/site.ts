@@ -95,12 +95,6 @@ export const pageMetadata = {
       "Reglamento oficial de la Copa Salvadoreña de Programación 2026: equipos, plataforma, problemas, lenguajes, evaluación, conducta y jurado.",
     canonical: absoluteUrl("/rules/"),
   },
-  register: {
-    title: `Inscripción | ${siteConfig.name}`,
-    description:
-      "Inscríbete gratis a la Copa Salvadoreña de Programación 2026. Forma tu equipo, selecciona tu categoría y completa el registro oficial.",
-    canonical: absoluteUrl("/register/"),
-  },
   phases: {
     title: `Fases | ${siteConfig.name}`,
     description:
@@ -113,19 +107,5 @@ export const pageMetadata = {
     description:
       "Cuenta regresiva en tiempo real hacia la fase virtual de la Copa Salvadoreña de Programación 2026, el 1 de agosto de 2026.",
     canonical: absoluteUrl("/countdown/"),
-  },
-  registrationForm: {
-    title: `Formulario de inscripción | ${siteConfig.name}`,
-    description:
-      "Formulario oficial de registro de equipos para la Copa Salvadoreña de Programación 2026.",
-    canonical: absoluteUrl("/inscripcion/registro/"),
-    noindex: true,
-  },
-  registrationSuccess: {
-    title: `Inscripción enviada | ${siteConfig.name}`,
-    description:
-      "Confirmación de inscripción enviada para la Copa Salvadoreña de Programación 2026.",
-    canonical: absoluteUrl("/inscripcion/exito/"),
-    noindex: true,
   },
 } as const;
