@@ -1,6 +1,7 @@
 ---
 export type CronogramaIcon =
     | "clipboard"
+    | "checklist"
     | "megaphone"
     | "code"
     | "utensils"
@@ -24,6 +25,8 @@ const { items } = Astro.props as Props;
 const ICON_PATHS: Record<CronogramaIcon, string> = {
     clipboard:
         '<path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1Z"></path><rect x="5" y="6" width="14" height="16" rx="2"></rect><path d="m9 13 2 2 4-4"></path>',
+    checklist:
+        '<rect x="5" y="4" width="14" height="17" rx="2"></rect><path d="M9 4V2h6v2"></path><path d="m8 10 1.5 1.5L12 9"></path><path d="M14 10h2"></path><path d="m8 15 1.5 1.5L12 14"></path><path d="M14 15h2"></path>',
     megaphone:
         '<path d="m3 11 18-5v12L3 13v-2Z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path>',
     code: '<polyline points="8 6 3 12 8 18"></polyline><polyline points="16 6 21 12 16 18"></polyline>',
